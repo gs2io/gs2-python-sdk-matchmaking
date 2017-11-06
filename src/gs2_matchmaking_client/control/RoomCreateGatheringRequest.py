@@ -15,11 +15,13 @@
 # permissions and limitations under the License.
 
 from gs2_core_client.Gs2UserRequest import Gs2UserRequest
+from gs2_matchmaking_client.Gs2Matchmaking import Gs2Matchmaking
 
 
 class RoomCreateGatheringRequest(Gs2UserRequest):
 
-    FUNCTION = "CreateGathering"
+    class Constant(Gs2Matchmaking):
+        FUNCTION = "CreateGathering"
 
     def __init__(self, params=None):
         """

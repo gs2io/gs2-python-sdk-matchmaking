@@ -26,7 +26,7 @@ class UpdateMatchmakingResult(object):
         :type response: dict
         """
         
-        self.__item = Matchmaking(response['item']) if 'item' in response.keys() or response['item'] is not None else None
+        self.__item = Matchmaking(response['item']) if 'item' in response.keys() and response['item'] is not None else None
 
     def get_item(self):
         """

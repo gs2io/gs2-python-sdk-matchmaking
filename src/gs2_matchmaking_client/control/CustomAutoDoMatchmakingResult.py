@@ -26,11 +26,11 @@ class CustomAutoDoMatchmakingResult(object):
         :type response: dict
         """
         
-        self.__search_context = unicode(response['searchContext']) if 'searchContext' in response.keys() or response['searchContext'] is not None else None
+        self.__search_context = unicode(response['searchContext']) if 'searchContext' in response.keys() and response['searchContext'] is not None else None
         
-        self.__item = CustomAutoGathering(response['item']) if 'item' in response.keys() or response['item'] is not None else None
+        self.__item = CustomAutoGathering(response['item']) if 'item' in response.keys() and response['item'] is not None else None
         
-        self.__done = bool(response['done']) if 'done' in response.keys() or response['done'] is not None else None
+        self.__done = bool(response['done']) if 'done' in response.keys() and response['done'] is not None else None
 
     def get_search_context(self):
         """

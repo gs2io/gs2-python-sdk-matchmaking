@@ -26,7 +26,7 @@ class GetMatchmakingStatusResult(object):
         :type response: dict
         """
         
-        self.__status = unicode(response['status']) if 'status' in response.keys() or response['status'] is not None else None
+        self.__status = unicode(response['status']) if 'status' in response.keys() and response['status'] is not None else None
 
     def get_status(self):
         """

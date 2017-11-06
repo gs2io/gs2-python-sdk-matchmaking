@@ -26,7 +26,7 @@ class RoomJoinGatheringResult(object):
         :type response: dict
         """
         
-        self.__item = RoomGathering(response['item']) if 'item' in response.keys() or response['item'] is not None else None
+        self.__item = RoomGathering(response['item']) if 'item' in response.keys() and response['item'] is not None else None
 
     def get_item(self):
         """

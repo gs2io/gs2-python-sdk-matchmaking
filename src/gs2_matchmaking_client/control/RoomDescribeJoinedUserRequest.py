@@ -15,11 +15,13 @@
 # permissions and limitations under the License.
 
 from gs2_core_client.Gs2UserRequest import Gs2UserRequest
+from gs2_matchmaking_client.Gs2Matchmaking import Gs2Matchmaking
 
 
 class RoomDescribeJoinedUserRequest(Gs2UserRequest):
 
-    FUNCTION = "DescribeJoinedUser"
+    class Constant(Gs2Matchmaking):
+        FUNCTION = "DescribeJoinedUser"
 
     def __init__(self, params=None):
         """

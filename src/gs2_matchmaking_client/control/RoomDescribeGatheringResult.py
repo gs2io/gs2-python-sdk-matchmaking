@@ -26,7 +26,7 @@ class RoomDescribeGatheringResult(object):
         :type response: dict
         """
         
-        self.__next_page_token = unicode(response['nextPageToken']) if 'nextPageToken' in response.keys() or response['nextPageToken'] is not None else None
+        self.__next_page_token = unicode(response['nextPageToken']) if 'nextPageToken' in response.keys() and response['nextPageToken'] is not None else None
         
         self.__items = list(
             map(
