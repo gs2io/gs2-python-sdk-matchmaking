@@ -55,3 +55,18 @@ class CustomAutoDoMatchmakingResult(object):
         :rtype: bool
         """
         return self.__done
+
+    def to_dict(self):
+        """
+        辞書配列に変換
+        :return: 辞書配列
+        :rtype: dict
+        """
+        return { 
+            'searchContext': self.__search_context,
+        
+            'item': self.__item.to_dict(),
+        
+            'done': self.__done,
+        
+        }

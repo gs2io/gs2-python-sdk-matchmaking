@@ -35,3 +35,14 @@ class AnybodyDoMatchmakingResult(object):
         :rtype: AnybodyGathering
         """
         return self.__item
+
+    def to_dict(self):
+        """
+        辞書配列に変換
+        :return: 辞書配列
+        :rtype: dict
+        """
+        return { 
+            'item': self.__item.to_dict(),
+        
+        }

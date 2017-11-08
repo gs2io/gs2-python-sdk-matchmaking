@@ -34,417 +34,6 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         """
         super(Gs2MatchmakingClient, self).__init__(credential, region)
 
-
-    def passcode_create_gathering(self, request):
-        """
-        パスコード付きギャザリングを新規作成します<br>
-        <br>
-        パスコードは8桁の数字で構成されたものが自動的に発行されます。<br>
-        パスコードの解像度的に秒間100を超える勢いでギャザリングを作成する必要がある場合は<br>
-        オートマッチメイキングと組み合わせる必要があります。<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.PasscodeCreateGatheringRequest.PasscodeCreateGatheringRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.PasscodeCreateGatheringResult.PasscodeCreateGatheringResult
-        """
-        body = { 
-        }
-
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.PasscodeCreateGatheringRequest import PasscodeCreateGatheringRequest
-
-        from gs2_matchmaking_client.control.PasscodeCreateGatheringResult import PasscodeCreateGatheringResult
-        return PasscodeCreateGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode",
-            service=self.ENDPOINT,
-            module=PasscodeCreateGatheringRequest.Constant.MODULE,
-            function=PasscodeCreateGatheringRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
-
-    def passcode_breakup_gathering(self, request):
-        """
-        ギャザリングを解散します<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.PasscodeBreakupGatheringRequest.PasscodeBreakupGatheringRequest
-
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.PasscodeBreakupGatheringRequest import PasscodeBreakupGatheringRequest
-
-        self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "",
-            service=self.ENDPOINT,
-            module=PasscodeBreakupGatheringRequest.Constant.MODULE,
-            function=PasscodeBreakupGatheringRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        )
-
-
-
-    def update_matchmaking(self, request):
-        """
-        マッチメイキングを更新します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.UpdateMatchmakingRequest.UpdateMatchmakingRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.UpdateMatchmakingResult.UpdateMatchmakingResult
-        """
-        body = { 
-            "callback": request.get_callback(),
-            "serviceClass": request.get_service_class(),
-        }
-
-        if request.get_description() is not None:
-            body["description"] = request.get_description()
-        if request.get_notification_game_name() is not None:
-            body["notificationGameName"] = request.get_notification_game_name()
-        if request.get_gathering_pool_name() is not None:
-            body["gatheringPoolName"] = request.get_gathering_pool_name()
-        headers = { 
-        }
-        from gs2_matchmaking_client.control.UpdateMatchmakingRequest import UpdateMatchmakingRequest
-
-        from gs2_matchmaking_client.control.UpdateMatchmakingResult import UpdateMatchmakingResult
-        return UpdateMatchmakingResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "",
-            service=self.ENDPOINT,
-            module=UpdateMatchmakingRequest.Constant.MODULE,
-            function=UpdateMatchmakingRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
-
-    def get_matchmaking(self, request):
-        """
-        マッチメイキングを取得します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.GetMatchmakingRequest.GetMatchmakingRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.GetMatchmakingResult.GetMatchmakingResult
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-        }
-        from gs2_matchmaking_client.control.GetMatchmakingRequest import GetMatchmakingRequest
-
-        from gs2_matchmaking_client.control.GetMatchmakingResult import GetMatchmakingResult
-        return GetMatchmakingResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "",
-            service=self.ENDPOINT,
-            module=GetMatchmakingRequest.Constant.MODULE,
-            function=GetMatchmakingRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
-
-    def delete_matchmaking(self, request):
-        """
-        マッチメイキングを削除します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.DeleteMatchmakingRequest.DeleteMatchmakingRequest
-
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-        }
-        from gs2_matchmaking_client.control.DeleteMatchmakingRequest import DeleteMatchmakingRequest
-
-        self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "",
-            service=self.ENDPOINT,
-            module=DeleteMatchmakingRequest.Constant.MODULE,
-            function=DeleteMatchmakingRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        )
-
-
-
-
-    def passcode_join_gathering(self, request):
-        """
-        パスコード付きギャザリングに参加します<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.PasscodeJoinGatheringRequest.PasscodeJoinGatheringRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.PasscodeJoinGatheringResult.PasscodeJoinGatheringResult
-        """
-        body = { 
-        }
-
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.PasscodeJoinGatheringRequest import PasscodeJoinGatheringRequest
-
-        from gs2_matchmaking_client.control.PasscodeJoinGatheringResult import PasscodeJoinGatheringResult
-        return PasscodeJoinGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/join/" + str(("null" if request.get_passcode() is None else request.get_passcode())) + "",
-            service=self.ENDPOINT,
-            module=PasscodeJoinGatheringRequest.Constant.MODULE,
-            function=PasscodeJoinGatheringRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
-
-    def get_matchmaking_status(self, request):
-        """
-        マッチメイキングのステータスを取得します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.GetMatchmakingStatusRequest.GetMatchmakingStatusRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.GetMatchmakingStatusResult.GetMatchmakingStatusResult
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-        }
-        from gs2_matchmaking_client.control.GetMatchmakingStatusRequest import GetMatchmakingStatusRequest
-
-        from gs2_matchmaking_client.control.GetMatchmakingStatusResult import GetMatchmakingStatusResult
-        return GetMatchmakingStatusResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/status",
-            service=self.ENDPOINT,
-            module=GetMatchmakingStatusRequest.Constant.MODULE,
-            function=GetMatchmakingStatusRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
-
-    def passcode_describe_joined_user(self, request):
-        """
-        ギャザリングの参加者一覧を取得します<br>
-        <br>
-        マッチメイキングが成立すると 404 Not Found 応答が返るようになります。<br>
-        404応答を返すようになる直前にコールバックエンドポイントに確定した参加者一覧情報が渡されるため、<br>
-        コールバックを受け取ってからは本APIを呼び出さないように実装するべきです。<br>
-        <br>
-        - 消費クオータ: 3<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.PasscodeDescribeJoinedUserRequest.PasscodeDescribeJoinedUserRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.PasscodeDescribeJoinedUserResult.PasscodeDescribeJoinedUserResult
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.PasscodeDescribeJoinedUserRequest import PasscodeDescribeJoinedUserRequest
-
-        from gs2_matchmaking_client.control.PasscodeDescribeJoinedUserResult import PasscodeDescribeJoinedUserResult
-        return PasscodeDescribeJoinedUserResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
-            service=self.ENDPOINT,
-            module=PasscodeDescribeJoinedUserRequest.Constant.MODULE,
-            function=PasscodeDescribeJoinedUserRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
-
-    def passcode_leave_gathering(self, request):
-        """
-        ギャザリングから離脱します<br>
-        <br>
-        本APIは確実に成功することを保証していません。<br>
-        例えば、離脱する直前にギャザリングが成立した場合は 404 Not Found を応答します。<br>
-        <br>
-        404応答を受け取った場合はすでにギャザリングが成立していないかを確認する必要があります。<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.PasscodeLeaveGatheringRequest.PasscodeLeaveGatheringRequest
-
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.PasscodeLeaveGatheringRequest import PasscodeLeaveGatheringRequest
-
-        self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
-            service=self.ENDPOINT,
-            module=PasscodeLeaveGatheringRequest.Constant.MODULE,
-            function=PasscodeLeaveGatheringRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        )
-
-
-
-
-    def room_join_gathering(self, request):
-        """
-        ギャザリングに参加します<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.RoomJoinGatheringRequest.RoomJoinGatheringRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.RoomJoinGatheringResult.RoomJoinGatheringResult
-        """
-        body = { 
-        }
-
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.RoomJoinGatheringRequest import RoomJoinGatheringRequest
-
-        from gs2_matchmaking_client.control.RoomJoinGatheringResult import RoomJoinGatheringResult
-        return RoomJoinGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "",
-            service=self.ENDPOINT,
-            module=RoomJoinGatheringRequest.Constant.MODULE,
-            function=RoomJoinGatheringRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
-
-    def room_breakup_gathering(self, request):
-        """
-        ギャザリングを解散します<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.RoomBreakupGatheringRequest.RoomBreakupGatheringRequest
-
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.RoomBreakupGatheringRequest import RoomBreakupGatheringRequest
-
-        self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "",
-            service=self.ENDPOINT,
-            module=RoomBreakupGatheringRequest.Constant.MODULE,
-            function=RoomBreakupGatheringRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        )
-
-
-
-
-    def passcode_early_complete_gathering(self, request):
-        """
-        マッチメイキングを早期終了します<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.PasscodeEarlyCompleteGatheringRequest.PasscodeEarlyCompleteGatheringRequest
-
-        """
-        body = { 
-        }
-
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.PasscodeEarlyCompleteGatheringRequest import PasscodeEarlyCompleteGatheringRequest
-
-        self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/complete",
-            service=self.ENDPOINT,
-            module=PasscodeEarlyCompleteGatheringRequest.Constant.MODULE,
-            function=PasscodeEarlyCompleteGatheringRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        )
-
-
-
-    def describe_service_class(self, request):
-        """
-        サービスクラスの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.DescribeServiceClassRequest.DescribeServiceClassRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.DescribeServiceClassResult.DescribeServiceClassResult
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-        }
-        from gs2_matchmaking_client.control.DescribeServiceClassRequest import DescribeServiceClassRequest
-
-        from gs2_matchmaking_client.control.DescribeServiceClassResult import DescribeServiceClassResult
-        return DescribeServiceClassResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/serviceClass",
-            service=self.ENDPOINT,
-            module=DescribeServiceClassRequest.Constant.MODULE,
-            function=DescribeServiceClassRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
-
     def anybody_describe_joined_user(self, request):
         """
         ギャザリングの参加者一覧を取得します<br>
@@ -476,6 +65,45 @@ class Gs2MatchmakingClient(AbstractGs2Client):
             module=AnybodyDescribeJoinedUserRequest.Constant.MODULE,
             function=AnybodyDescribeJoinedUserRequest.Constant.FUNCTION,
             query_strings=query_strings,
+            headers=headers
+        ))
+
+
+
+
+    def anybody_do_matchmaking(self, request):
+        """
+        Anybodyマッチメイキングを開始します<br>
+        <br>
+        すでに存在するギャザリングに参加するか、新しいギャザリングを新規作成します。<br>
+        戻り値で参加したギャザリングIDが返りますので、そのIDを利用して後続のAPIを利用できます。<br>
+        <br>
+        ギャザリングが成立した場合、マッチメイキングに設定したコールバックエンドポイントにギャザリング<br>
+        とそのギャザリングの参加者一覧が返されます。<br>
+        コールバック後にギャザリング情報はマッチメイキングサーバから削除され、後続のAPIも利用できなくなります。<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.AnybodyDoMatchmakingRequest.AnybodyDoMatchmakingRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.AnybodyDoMatchmakingResult.AnybodyDoMatchmakingResult
+        """
+        body = { 
+        }
+
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.AnybodyDoMatchmakingRequest import AnybodyDoMatchmakingRequest
+
+        from gs2_matchmaking_client.control.AnybodyDoMatchmakingResult import AnybodyDoMatchmakingResult
+        return AnybodyDoMatchmakingResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/anybody",
+            service=self.ENDPOINT,
+            module=AnybodyDoMatchmakingRequest.Constant.MODULE,
+            function=AnybodyDoMatchmakingRequest.Constant.FUNCTION,
+            body=body,
             headers=headers
         ))
 
@@ -513,146 +141,6 @@ class Gs2MatchmakingClient(AbstractGs2Client):
             query_strings=query_strings,
             headers=headers
         )
-
-
-
-    def custom_auto_describe_joined_user(self, request):
-        """
-        ギャザリングの参加者一覧を取得します<br>
-        <br>
-        マッチメイキングが成立すると 404 Not Found 応答が返るようになります。<br>
-        404応答を返すようになる直前にコールバックエンドポイントに確定した参加者一覧情報が渡されるため、<br>
-        コールバックを受け取ってからは本APIを呼び出さないように実装するべきです。<br>
-        <br>
-        - 消費クオータ: 3<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserRequest.CustomAutoDescribeJoinedUserRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserResult.CustomAutoDescribeJoinedUserResult
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserRequest import CustomAutoDescribeJoinedUserRequest
-
-        from gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserResult import CustomAutoDescribeJoinedUserResult
-        return CustomAutoDescribeJoinedUserResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/customauto/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
-            service=self.ENDPOINT,
-            module=CustomAutoDescribeJoinedUserRequest.Constant.MODULE,
-            function=CustomAutoDescribeJoinedUserRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
-
-    def custom_auto_leave_gathering(self, request):
-        """
-        ギャザリングから離脱します<br>
-        <br>
-        本APIは確実に成功することを保証していません。<br>
-        例えば、離脱する直前にギャザリングが成立した場合は 404 Not Found を応答します。<br>
-        <br>
-        404応答を受け取った場合はすでにギャザリングが成立していないかを確認する必要があります。<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.CustomAutoLeaveGatheringRequest.CustomAutoLeaveGatheringRequest
-
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.CustomAutoLeaveGatheringRequest import CustomAutoLeaveGatheringRequest
-
-        self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/customauto/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
-            service=self.ENDPOINT,
-            module=CustomAutoLeaveGatheringRequest.Constant.MODULE,
-            function=CustomAutoLeaveGatheringRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        )
-
-
-
-
-    def room_create_gathering(self, request):
-        """
-        ギャザリングを新規作成します<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.RoomCreateGatheringRequest.RoomCreateGatheringRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.RoomCreateGatheringResult.RoomCreateGatheringResult
-        """
-        body = { 
-            "meta": request.get_meta(),
-        }
-
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.RoomCreateGatheringRequest import RoomCreateGatheringRequest
-
-        from gs2_matchmaking_client.control.RoomCreateGatheringResult import RoomCreateGatheringResult
-        return RoomCreateGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room",
-            service=self.ENDPOINT,
-            module=RoomCreateGatheringRequest.Constant.MODULE,
-            function=RoomCreateGatheringRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
-
-    def room_describe_gathering(self, request):
-        """
-        ギャザリング一覧を取得します<br>
-        <br>
-        - 消費クオータ: 20件あたり3クオータ<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.RoomDescribeGatheringRequest.RoomDescribeGatheringRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.RoomDescribeGatheringResult.RoomDescribeGatheringResult
-        """
-
-        query_strings = {
-
-            'pageToken': request.get_page_token(),
-
-            'limit': request.get_limit(),
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.RoomDescribeGatheringRequest import RoomDescribeGatheringRequest
-
-        from gs2_matchmaking_client.control.RoomDescribeGatheringResult import RoomDescribeGatheringResult
-        return RoomDescribeGatheringResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room",
-            service=self.ENDPOINT,
-            module=RoomDescribeGatheringRequest.Constant.MODULE,
-            function=RoomDescribeGatheringRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
 
 
 
@@ -696,40 +184,7 @@ class Gs2MatchmakingClient(AbstractGs2Client):
 
 
 
-    def describe_matchmaking(self, request):
-        """
-        マッチメイキングの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.DescribeMatchmakingRequest.DescribeMatchmakingRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.DescribeMatchmakingResult.DescribeMatchmakingResult
-        """
-
-        query_strings = {
-
-            'pageToken': request.get_page_token(),
-
-            'limit': request.get_limit(),
-
-        }
-        headers = { 
-        }
-        from gs2_matchmaking_client.control.DescribeMatchmakingRequest import DescribeMatchmakingRequest
-
-        from gs2_matchmaking_client.control.DescribeMatchmakingResult import DescribeMatchmakingResult
-        return DescribeMatchmakingResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking",
-            service=self.ENDPOINT,
-            module=DescribeMatchmakingRequest.Constant.MODULE,
-            function=DescribeMatchmakingRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        ))
-
-
-
-    def room_describe_joined_user(self, request):
+    def custom_auto_describe_joined_user(self, request):
         """
         ギャザリングの参加者一覧を取得します<br>
         <br>
@@ -740,9 +195,9 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         - 消費クオータ: 3<br>
         <br>
         :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.RoomDescribeJoinedUserRequest.RoomDescribeJoinedUserRequest
+        :type request: gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserRequest.CustomAutoDescribeJoinedUserRequest
         :return: 結果
-        :rtype: gs2_matchmaking_client.control.RoomDescribeJoinedUserResult.RoomDescribeJoinedUserResult
+        :rtype: gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserResult.CustomAutoDescribeJoinedUserResult
         """
 
         query_strings = {
@@ -751,52 +206,17 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
-        from gs2_matchmaking_client.control.RoomDescribeJoinedUserRequest import RoomDescribeJoinedUserRequest
+        from gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserRequest import CustomAutoDescribeJoinedUserRequest
 
-        from gs2_matchmaking_client.control.RoomDescribeJoinedUserResult import RoomDescribeJoinedUserResult
-        return RoomDescribeJoinedUserResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+        from gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserResult import CustomAutoDescribeJoinedUserResult
+        return CustomAutoDescribeJoinedUserResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/customauto/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
-            module=RoomDescribeJoinedUserRequest.Constant.MODULE,
-            function=RoomDescribeJoinedUserRequest.Constant.FUNCTION,
+            module=CustomAutoDescribeJoinedUserRequest.Constant.MODULE,
+            function=CustomAutoDescribeJoinedUserRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
-
-    def room_leave_gathering(self, request):
-        """
-        ギャザリングから離脱します<br>
-        <br>
-        本APIは確実に成功することを保証していません。<br>
-        例えば、離脱する直前にギャザリングが成立した場合は 404 Not Found を応答します。<br>
-        <br>
-        404応答を受け取った場合はすでにギャザリングが成立していないかを確認する必要があります。<br>
-        <br>
-        - 消費クオータ: 10<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.RoomLeaveGatheringRequest.RoomLeaveGatheringRequest
-
-        """
-
-        query_strings = {
-
-        }
-        headers = { 
-            "X-GS2-ACCESS-TOKEN": request.get_access_token()
-        }
-        from gs2_matchmaking_client.control.RoomLeaveGatheringRequest import RoomLeaveGatheringRequest
-
-        self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
-            service=self.ENDPOINT,
-            module=RoomLeaveGatheringRequest.Constant.MODULE,
-            function=RoomLeaveGatheringRequest.Constant.FUNCTION,
-            query_strings=query_strings,
-            headers=headers
-        )
 
 
 
@@ -873,24 +293,233 @@ class Gs2MatchmakingClient(AbstractGs2Client):
 
 
 
-
-    def anybody_do_matchmaking(self, request):
+    def custom_auto_leave_gathering(self, request):
         """
-        Anybodyマッチメイキングを開始します<br>
+        ギャザリングから離脱します<br>
         <br>
-        すでに存在するギャザリングに参加するか、新しいギャザリングを新規作成します。<br>
-        戻り値で参加したギャザリングIDが返りますので、そのIDを利用して後続のAPIを利用できます。<br>
+        本APIは確実に成功することを保証していません。<br>
+        例えば、離脱する直前にギャザリングが成立した場合は 404 Not Found を応答します。<br>
         <br>
-        ギャザリングが成立した場合、マッチメイキングに設定したコールバックエンドポイントにギャザリング<br>
-        とそのギャザリングの参加者一覧が返されます。<br>
-        コールバック後にギャザリング情報はマッチメイキングサーバから削除され、後続のAPIも利用できなくなります。<br>
+        404応答を受け取った場合はすでにギャザリングが成立していないかを確認する必要があります。<br>
         <br>
         - 消費クオータ: 10<br>
         <br>
         :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.AnybodyDoMatchmakingRequest.AnybodyDoMatchmakingRequest
+        :type request: gs2_matchmaking_client.control.CustomAutoLeaveGatheringRequest.CustomAutoLeaveGatheringRequest
+
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.CustomAutoLeaveGatheringRequest import CustomAutoLeaveGatheringRequest
+
+        self._do_delete_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/customauto/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            service=self.ENDPOINT,
+            module=CustomAutoLeaveGatheringRequest.Constant.MODULE,
+            function=CustomAutoLeaveGatheringRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        )
+
+
+
+    def delete_matchmaking(self, request):
+        """
+        マッチメイキングを削除します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.DeleteMatchmakingRequest.DeleteMatchmakingRequest
+
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+        }
+        from gs2_matchmaking_client.control.DeleteMatchmakingRequest import DeleteMatchmakingRequest
+
+        self._do_delete_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "",
+            service=self.ENDPOINT,
+            module=DeleteMatchmakingRequest.Constant.MODULE,
+            function=DeleteMatchmakingRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        )
+
+
+
+    def describe_matchmaking(self, request):
+        """
+        マッチメイキングの一覧を取得します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.DescribeMatchmakingRequest.DescribeMatchmakingRequest
         :return: 結果
-        :rtype: gs2_matchmaking_client.control.AnybodyDoMatchmakingResult.AnybodyDoMatchmakingResult
+        :rtype: gs2_matchmaking_client.control.DescribeMatchmakingResult.DescribeMatchmakingResult
+        """
+
+        query_strings = {
+
+            'pageToken': request.get_page_token(),
+
+            'limit': request.get_limit(),
+
+        }
+        headers = { 
+        }
+        from gs2_matchmaking_client.control.DescribeMatchmakingRequest import DescribeMatchmakingRequest
+
+        from gs2_matchmaking_client.control.DescribeMatchmakingResult import DescribeMatchmakingResult
+        return DescribeMatchmakingResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking",
+            service=self.ENDPOINT,
+            module=DescribeMatchmakingRequest.Constant.MODULE,
+            function=DescribeMatchmakingRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+
+
+    def describe_service_class(self, request):
+        """
+        サービスクラスの一覧を取得します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.DescribeServiceClassRequest.DescribeServiceClassRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.DescribeServiceClassResult.DescribeServiceClassResult
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+        }
+        from gs2_matchmaking_client.control.DescribeServiceClassRequest import DescribeServiceClassRequest
+
+        from gs2_matchmaking_client.control.DescribeServiceClassResult import DescribeServiceClassResult
+        return DescribeServiceClassResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/serviceClass",
+            service=self.ENDPOINT,
+            module=DescribeServiceClassRequest.Constant.MODULE,
+            function=DescribeServiceClassRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+
+
+    def get_matchmaking(self, request):
+        """
+        マッチメイキングを取得します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.GetMatchmakingRequest.GetMatchmakingRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.GetMatchmakingResult.GetMatchmakingResult
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+        }
+        from gs2_matchmaking_client.control.GetMatchmakingRequest import GetMatchmakingRequest
+
+        from gs2_matchmaking_client.control.GetMatchmakingResult import GetMatchmakingResult
+        return GetMatchmakingResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "",
+            service=self.ENDPOINT,
+            module=GetMatchmakingRequest.Constant.MODULE,
+            function=GetMatchmakingRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+
+
+    def get_matchmaking_status(self, request):
+        """
+        マッチメイキングのステータスを取得します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.GetMatchmakingStatusRequest.GetMatchmakingStatusRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.GetMatchmakingStatusResult.GetMatchmakingStatusResult
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+        }
+        from gs2_matchmaking_client.control.GetMatchmakingStatusRequest import GetMatchmakingStatusRequest
+
+        from gs2_matchmaking_client.control.GetMatchmakingStatusResult import GetMatchmakingStatusResult
+        return GetMatchmakingStatusResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/status",
+            service=self.ENDPOINT,
+            module=GetMatchmakingStatusRequest.Constant.MODULE,
+            function=GetMatchmakingStatusRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+
+
+    def passcode_breakup_gathering(self, request):
+        """
+        ギャザリングを解散します<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.PasscodeBreakupGatheringRequest.PasscodeBreakupGatheringRequest
+
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.PasscodeBreakupGatheringRequest import PasscodeBreakupGatheringRequest
+
+        self._do_delete_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "",
+            service=self.ENDPOINT,
+            module=PasscodeBreakupGatheringRequest.Constant.MODULE,
+            function=PasscodeBreakupGatheringRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        )
+
+
+
+
+    def passcode_create_gathering(self, request):
+        """
+        パスコード付きギャザリングを新規作成します<br>
+        <br>
+        パスコードは8桁の数字で構成されたものが自動的に発行されます。<br>
+        パスコードの解像度的に秒間100を超える勢いでギャザリングを作成する必要がある場合は<br>
+        オートマッチメイキングと組み合わせる必要があります。<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.PasscodeCreateGatheringRequest.PasscodeCreateGatheringRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.PasscodeCreateGatheringResult.PasscodeCreateGatheringResult
         """
         body = { 
         }
@@ -898,15 +527,283 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
-        from gs2_matchmaking_client.control.AnybodyDoMatchmakingRequest import AnybodyDoMatchmakingRequest
+        from gs2_matchmaking_client.control.PasscodeCreateGatheringRequest import PasscodeCreateGatheringRequest
 
-        from gs2_matchmaking_client.control.AnybodyDoMatchmakingResult import AnybodyDoMatchmakingResult
-        return AnybodyDoMatchmakingResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/anybody",
+        from gs2_matchmaking_client.control.PasscodeCreateGatheringResult import PasscodeCreateGatheringResult
+        return PasscodeCreateGatheringResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode",
             service=self.ENDPOINT,
-            module=AnybodyDoMatchmakingRequest.Constant.MODULE,
-            function=AnybodyDoMatchmakingRequest.Constant.FUNCTION,
+            module=PasscodeCreateGatheringRequest.Constant.MODULE,
+            function=PasscodeCreateGatheringRequest.Constant.FUNCTION,
             body=body,
+            headers=headers
+        ))
+
+
+
+    def passcode_describe_joined_user(self, request):
+        """
+        ギャザリングの参加者一覧を取得します<br>
+        <br>
+        マッチメイキングが成立すると 404 Not Found 応答が返るようになります。<br>
+        404応答を返すようになる直前にコールバックエンドポイントに確定した参加者一覧情報が渡されるため、<br>
+        コールバックを受け取ってからは本APIを呼び出さないように実装するべきです。<br>
+        <br>
+        - 消費クオータ: 3<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.PasscodeDescribeJoinedUserRequest.PasscodeDescribeJoinedUserRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.PasscodeDescribeJoinedUserResult.PasscodeDescribeJoinedUserResult
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.PasscodeDescribeJoinedUserRequest import PasscodeDescribeJoinedUserRequest
+
+        from gs2_matchmaking_client.control.PasscodeDescribeJoinedUserResult import PasscodeDescribeJoinedUserResult
+        return PasscodeDescribeJoinedUserResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            service=self.ENDPOINT,
+            module=PasscodeDescribeJoinedUserRequest.Constant.MODULE,
+            function=PasscodeDescribeJoinedUserRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+
+
+
+    def passcode_early_complete_gathering(self, request):
+        """
+        マッチメイキングを早期終了します<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.PasscodeEarlyCompleteGatheringRequest.PasscodeEarlyCompleteGatheringRequest
+
+        """
+        body = { 
+        }
+
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.PasscodeEarlyCompleteGatheringRequest import PasscodeEarlyCompleteGatheringRequest
+
+        self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/complete",
+            service=self.ENDPOINT,
+            module=PasscodeEarlyCompleteGatheringRequest.Constant.MODULE,
+            function=PasscodeEarlyCompleteGatheringRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        )
+
+
+
+
+    def passcode_join_gathering(self, request):
+        """
+        パスコード付きギャザリングに参加します<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.PasscodeJoinGatheringRequest.PasscodeJoinGatheringRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.PasscodeJoinGatheringResult.PasscodeJoinGatheringResult
+        """
+        body = { 
+        }
+
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.PasscodeJoinGatheringRequest import PasscodeJoinGatheringRequest
+
+        from gs2_matchmaking_client.control.PasscodeJoinGatheringResult import PasscodeJoinGatheringResult
+        return PasscodeJoinGatheringResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/join/" + str(("null" if request.get_passcode() is None else request.get_passcode())) + "",
+            service=self.ENDPOINT,
+            module=PasscodeJoinGatheringRequest.Constant.MODULE,
+            function=PasscodeJoinGatheringRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+
+
+    def passcode_leave_gathering(self, request):
+        """
+        ギャザリングから離脱します<br>
+        <br>
+        本APIは確実に成功することを保証していません。<br>
+        例えば、離脱する直前にギャザリングが成立した場合は 404 Not Found を応答します。<br>
+        <br>
+        404応答を受け取った場合はすでにギャザリングが成立していないかを確認する必要があります。<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.PasscodeLeaveGatheringRequest.PasscodeLeaveGatheringRequest
+
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.PasscodeLeaveGatheringRequest import PasscodeLeaveGatheringRequest
+
+        self._do_delete_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            service=self.ENDPOINT,
+            module=PasscodeLeaveGatheringRequest.Constant.MODULE,
+            function=PasscodeLeaveGatheringRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        )
+
+
+
+    def room_breakup_gathering(self, request):
+        """
+        ギャザリングを解散します<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.RoomBreakupGatheringRequest.RoomBreakupGatheringRequest
+
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.RoomBreakupGatheringRequest import RoomBreakupGatheringRequest
+
+        self._do_delete_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "",
+            service=self.ENDPOINT,
+            module=RoomBreakupGatheringRequest.Constant.MODULE,
+            function=RoomBreakupGatheringRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        )
+
+
+
+
+    def room_create_gathering(self, request):
+        """
+        ギャザリングを新規作成します<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.RoomCreateGatheringRequest.RoomCreateGatheringRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.RoomCreateGatheringResult.RoomCreateGatheringResult
+        """
+        body = { 
+            "meta": request.get_meta(),
+        }
+
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.RoomCreateGatheringRequest import RoomCreateGatheringRequest
+
+        from gs2_matchmaking_client.control.RoomCreateGatheringResult import RoomCreateGatheringResult
+        return RoomCreateGatheringResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room",
+            service=self.ENDPOINT,
+            module=RoomCreateGatheringRequest.Constant.MODULE,
+            function=RoomCreateGatheringRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+
+
+    def room_describe_gathering(self, request):
+        """
+        ギャザリング一覧を取得します<br>
+        <br>
+        - 消費クオータ: 20件あたり3クオータ<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.RoomDescribeGatheringRequest.RoomDescribeGatheringRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.RoomDescribeGatheringResult.RoomDescribeGatheringResult
+        """
+
+        query_strings = {
+
+            'pageToken': request.get_page_token(),
+
+            'limit': request.get_limit(),
+
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.RoomDescribeGatheringRequest import RoomDescribeGatheringRequest
+
+        from gs2_matchmaking_client.control.RoomDescribeGatheringResult import RoomDescribeGatheringResult
+        return RoomDescribeGatheringResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room",
+            service=self.ENDPOINT,
+            module=RoomDescribeGatheringRequest.Constant.MODULE,
+            function=RoomDescribeGatheringRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        ))
+
+
+
+    def room_describe_joined_user(self, request):
+        """
+        ギャザリングの参加者一覧を取得します<br>
+        <br>
+        マッチメイキングが成立すると 404 Not Found 応答が返るようになります。<br>
+        404応答を返すようになる直前にコールバックエンドポイントに確定した参加者一覧情報が渡されるため、<br>
+        コールバックを受け取ってからは本APIを呼び出さないように実装するべきです。<br>
+        <br>
+        - 消費クオータ: 3<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.RoomDescribeJoinedUserRequest.RoomDescribeJoinedUserRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.RoomDescribeJoinedUserResult.RoomDescribeJoinedUserResult
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.RoomDescribeJoinedUserRequest import RoomDescribeJoinedUserRequest
+
+        from gs2_matchmaking_client.control.RoomDescribeJoinedUserResult import RoomDescribeJoinedUserResult
+        return RoomDescribeJoinedUserResult(self._do_get_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            service=self.ENDPOINT,
+            module=RoomDescribeJoinedUserRequest.Constant.MODULE,
+            function=RoomDescribeJoinedUserRequest.Constant.FUNCTION,
+            query_strings=query_strings,
             headers=headers
         ))
 
@@ -939,5 +836,108 @@ class Gs2MatchmakingClient(AbstractGs2Client):
             body=body,
             headers=headers
         )
+
+
+
+
+    def room_join_gathering(self, request):
+        """
+        ギャザリングに参加します<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.RoomJoinGatheringRequest.RoomJoinGatheringRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.RoomJoinGatheringResult.RoomJoinGatheringResult
+        """
+        body = { 
+        }
+
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.RoomJoinGatheringRequest import RoomJoinGatheringRequest
+
+        from gs2_matchmaking_client.control.RoomJoinGatheringResult import RoomJoinGatheringResult
+        return RoomJoinGatheringResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "",
+            service=self.ENDPOINT,
+            module=RoomJoinGatheringRequest.Constant.MODULE,
+            function=RoomJoinGatheringRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
+
+
+
+    def room_leave_gathering(self, request):
+        """
+        ギャザリングから離脱します<br>
+        <br>
+        本APIは確実に成功することを保証していません。<br>
+        例えば、離脱する直前にギャザリングが成立した場合は 404 Not Found を応答します。<br>
+        <br>
+        404応答を受け取った場合はすでにギャザリングが成立していないかを確認する必要があります。<br>
+        <br>
+        - 消費クオータ: 10<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.RoomLeaveGatheringRequest.RoomLeaveGatheringRequest
+
+        """
+
+        query_strings = {
+
+        }
+        headers = { 
+            "X-GS2-ACCESS-TOKEN": request.get_access_token()
+        }
+        from gs2_matchmaking_client.control.RoomLeaveGatheringRequest import RoomLeaveGatheringRequest
+
+        self._do_delete_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            service=self.ENDPOINT,
+            module=RoomLeaveGatheringRequest.Constant.MODULE,
+            function=RoomLeaveGatheringRequest.Constant.FUNCTION,
+            query_strings=query_strings,
+            headers=headers
+        )
+
+
+
+    def update_matchmaking(self, request):
+        """
+        マッチメイキングを更新します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.UpdateMatchmakingRequest.UpdateMatchmakingRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.UpdateMatchmakingResult.UpdateMatchmakingResult
+        """
+        body = { 
+            "callback": request.get_callback(),
+            "serviceClass": request.get_service_class(),
+        }
+
+        if request.get_description() is not None:
+            body["description"] = request.get_description()
+        if request.get_notification_game_name() is not None:
+            body["notificationGameName"] = request.get_notification_game_name()
+        if request.get_gathering_pool_name() is not None:
+            body["gatheringPoolName"] = request.get_gathering_pool_name()
+        headers = { 
+        }
+        from gs2_matchmaking_client.control.UpdateMatchmakingRequest import UpdateMatchmakingRequest
+
+        from gs2_matchmaking_client.control.UpdateMatchmakingResult import UpdateMatchmakingResult
+        return UpdateMatchmakingResult(self._do_put_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "",
+            service=self.ENDPOINT,
+            module=UpdateMatchmakingRequest.Constant.MODULE,
+            function=UpdateMatchmakingRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
 
 

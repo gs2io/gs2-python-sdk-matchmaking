@@ -63,8 +63,6 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param name: マッチメイキングの名前
         :type name: unicode
         """
-        if not isinstance(name, unicode):
-            raise TypeError(type(name))
         self.__name = name
 
     def with_name(self, name):
@@ -92,8 +90,6 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param service_class: マッチメイキングのサービスクラス
         :type service_class: unicode
         """
-        if not isinstance(service_class, unicode):
-            raise TypeError(type(service_class))
         self.__service_class = service_class
 
     def with_service_class(self, service_class):
@@ -121,8 +117,6 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param gathering_pool_name: GS2-Realtime のギャザリングプール名
         :type gathering_pool_name: unicode
         """
-        if not isinstance(gathering_pool_name, unicode):
-            raise TypeError(type(gathering_pool_name))
         self.__gathering_pool_name = gathering_pool_name
 
     def with_gathering_pool_name(self, gathering_pool_name):
@@ -150,8 +144,6 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param callback: マッチメイキング完了コールバックURL
         :type callback: unicode
         """
-        if not isinstance(callback, unicode):
-            raise TypeError(type(callback))
         self.__callback = callback
 
     def with_callback(self, callback):
@@ -179,8 +171,6 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param max_player: 最大プレイヤー数
         :type max_player: int
         """
-        if not isinstance(max_player, int):
-            raise TypeError(type(max_player))
         self.__max_player = max_player
 
     def with_max_player(self, max_player):
@@ -208,8 +198,6 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param notification_game_name: GS2-InGamePushNotification のゲーム名
         :type notification_game_name: unicode
         """
-        if not isinstance(notification_game_name, unicode):
-            raise TypeError(type(notification_game_name))
         self.__notification_game_name = notification_game_name
 
     def with_notification_game_name(self, notification_game_name):
@@ -237,8 +225,6 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param type: マッチメイキングの種類
         :type type: unicode
         """
-        if not isinstance(type, unicode):
-            raise TypeError(type(type))
         self.__type = type
 
     def with_type(self, type):
@@ -266,8 +252,6 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param description: マッチメイキングの説明
         :type description: unicode
         """
-        if not isinstance(description, unicode):
-            raise TypeError(type(description))
         self.__description = description
 
     def with_description(self, description):

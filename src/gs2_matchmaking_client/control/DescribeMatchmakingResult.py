@@ -52,3 +52,16 @@ class DescribeMatchmakingResult(object):
         :rtype: list[Matchmaking]
         """
         return self.__items
+
+    def to_dict(self):
+        """
+        辞書配列に変換
+        :return: 辞書配列
+        :rtype: dict
+        """
+        return { 
+            'nextPageToken': self.__next_page_token,
+        
+            'items': map(lambda item: item.to_dict(), self.__items),
+        
+        }
