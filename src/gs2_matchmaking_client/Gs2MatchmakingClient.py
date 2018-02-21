@@ -56,11 +56,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.AnybodyDescribeJoinedUserRequest import AnybodyDescribeJoinedUserRequest
 
         from gs2_matchmaking_client.control.AnybodyDescribeJoinedUserResult import AnybodyDescribeJoinedUserResult
         return AnybodyDescribeJoinedUserResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/anybody/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/anybody/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
             module=AnybodyDescribeJoinedUserRequest.Constant.MODULE,
             function=AnybodyDescribeJoinedUserRequest.Constant.FUNCTION,
@@ -95,11 +97,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.AnybodyDoMatchmakingRequest import AnybodyDoMatchmakingRequest
 
         from gs2_matchmaking_client.control.AnybodyDoMatchmakingResult import AnybodyDoMatchmakingResult
         return AnybodyDoMatchmakingResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/anybody",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/anybody",
             service=self.ENDPOINT,
             module=AnybodyDoMatchmakingRequest.Constant.MODULE,
             function=AnybodyDoMatchmakingRequest.Constant.FUNCTION,
@@ -131,10 +135,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.AnybodyLeaveGatheringRequest import AnybodyLeaveGatheringRequest
 
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/anybody/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/anybody/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
             module=AnybodyLeaveGatheringRequest.Constant.MODULE,
             function=AnybodyLeaveGatheringRequest.Constant.FUNCTION,
@@ -157,19 +163,37 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         body = { 
             "name": request.get_name(),
             "serviceClass": request.get_service_class(),
-            "callback": request.get_callback(),
-            "maxPlayer": request.get_max_player(),
             "type": request.get_type(),
+            "maxPlayer": request.get_max_player(),
+            "callback": request.get_callback(),
         }
 
+        if request.get_description() is not None:
+            body["description"] = request.get_description()
         if request.get_gathering_pool_name() is not None:
             body["gatheringPoolName"] = request.get_gathering_pool_name()
         if request.get_notification_game_name() is not None:
             body["notificationGameName"] = request.get_notification_game_name()
-        if request.get_description() is not None:
-            body["description"] = request.get_description()
+        if request.get_create_gathering_trigger_script() is not None:
+            body["createGatheringTriggerScript"] = request.get_create_gathering_trigger_script()
+        if request.get_create_gathering_done_trigger_script() is not None:
+            body["createGatheringDoneTriggerScript"] = request.get_create_gathering_done_trigger_script()
+        if request.get_join_gathering_trigger_script() is not None:
+            body["joinGatheringTriggerScript"] = request.get_join_gathering_trigger_script()
+        if request.get_join_gathering_done_trigger_script() is not None:
+            body["joinGatheringDoneTriggerScript"] = request.get_join_gathering_done_trigger_script()
+        if request.get_leave_gathering_trigger_script() is not None:
+            body["leaveGatheringTriggerScript"] = request.get_leave_gathering_trigger_script()
+        if request.get_leave_gathering_done_trigger_script() is not None:
+            body["leaveGatheringDoneTriggerScript"] = request.get_leave_gathering_done_trigger_script()
+        if request.get_breakup_gathering_trigger_script() is not None:
+            body["breakupGatheringTriggerScript"] = request.get_breakup_gathering_trigger_script()
+        if request.get_matchmaking_complete_trigger_script() is not None:
+            body["matchmakingCompleteTriggerScript"] = request.get_matchmaking_complete_trigger_script()
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.CreateMatchmakingRequest import CreateMatchmakingRequest
 
         from gs2_matchmaking_client.control.CreateMatchmakingResult import CreateMatchmakingResult
@@ -206,11 +230,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserRequest import CustomAutoDescribeJoinedUserRequest
 
         from gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserResult import CustomAutoDescribeJoinedUserResult
         return CustomAutoDescribeJoinedUserResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/customauto/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/customauto/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
             module=CustomAutoDescribeJoinedUserRequest.Constant.MODULE,
             function=CustomAutoDescribeJoinedUserRequest.Constant.FUNCTION,
@@ -245,45 +271,47 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         :rtype: gs2_matchmaking_client.control.CustomAutoDoMatchmakingResult.CustomAutoDoMatchmakingResult
         """
         body = { 
+            "attribute1": request.get_attribute1(),
             "searchAttribute1Min": request.get_search_attribute1_min(),
             "searchAttribute1Max": request.get_search_attribute1_max(),
-            "attribute1": request.get_attribute1(),
         }
 
-        if request.get_search_attribute2_max() is not None:
-            body["searchAttribute2Max"] = request.get_search_attribute2_max()
-        if request.get_search_attribute5_min() is not None:
-            body["searchAttribute5Min"] = request.get_search_attribute5_min()
-        if request.get_search_attribute4_min() is not None:
-            body["searchAttribute4Min"] = request.get_search_attribute4_min()
-        if request.get_attribute3() is not None:
-            body["attribute3"] = request.get_attribute3()
-        if request.get_search_attribute3_max() is not None:
-            body["searchAttribute3Max"] = request.get_search_attribute3_max()
-        if request.get_search_attribute4_max() is not None:
-            body["searchAttribute4Max"] = request.get_search_attribute4_max()
-        if request.get_search_context() is not None:
-            body["searchContext"] = request.get_search_context()
-        if request.get_search_attribute5_max() is not None:
-            body["searchAttribute5Max"] = request.get_search_attribute5_max()
-        if request.get_search_attribute3_min() is not None:
-            body["searchAttribute3Min"] = request.get_search_attribute3_min()
         if request.get_attribute2() is not None:
             body["attribute2"] = request.get_attribute2()
-        if request.get_search_attribute2_min() is not None:
-            body["searchAttribute2Min"] = request.get_search_attribute2_min()
+        if request.get_attribute3() is not None:
+            body["attribute3"] = request.get_attribute3()
         if request.get_attribute4() is not None:
             body["attribute4"] = request.get_attribute4()
         if request.get_attribute5() is not None:
             body["attribute5"] = request.get_attribute5()
+        if request.get_search_attribute2_min() is not None:
+            body["searchAttribute2Min"] = request.get_search_attribute2_min()
+        if request.get_search_attribute3_min() is not None:
+            body["searchAttribute3Min"] = request.get_search_attribute3_min()
+        if request.get_search_attribute4_min() is not None:
+            body["searchAttribute4Min"] = request.get_search_attribute4_min()
+        if request.get_search_attribute5_min() is not None:
+            body["searchAttribute5Min"] = request.get_search_attribute5_min()
+        if request.get_search_attribute2_max() is not None:
+            body["searchAttribute2Max"] = request.get_search_attribute2_max()
+        if request.get_search_attribute3_max() is not None:
+            body["searchAttribute3Max"] = request.get_search_attribute3_max()
+        if request.get_search_attribute4_max() is not None:
+            body["searchAttribute4Max"] = request.get_search_attribute4_max()
+        if request.get_search_attribute5_max() is not None:
+            body["searchAttribute5Max"] = request.get_search_attribute5_max()
+        if request.get_search_context() is not None:
+            body["searchContext"] = request.get_search_context()
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.CustomAutoDoMatchmakingRequest import CustomAutoDoMatchmakingRequest
 
         from gs2_matchmaking_client.control.CustomAutoDoMatchmakingResult import CustomAutoDoMatchmakingResult
         return CustomAutoDoMatchmakingResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/customauto",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/customauto",
             service=self.ENDPOINT,
             module=CustomAutoDoMatchmakingRequest.Constant.MODULE,
             function=CustomAutoDoMatchmakingRequest.Constant.FUNCTION,
@@ -315,10 +343,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.CustomAutoLeaveGatheringRequest import CustomAutoLeaveGatheringRequest
 
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/customauto/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/customauto/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
             module=CustomAutoLeaveGatheringRequest.Constant.MODULE,
             function=CustomAutoLeaveGatheringRequest.Constant.FUNCTION,
@@ -342,10 +372,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.DeleteMatchmakingRequest import DeleteMatchmakingRequest
 
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "",
             service=self.ENDPOINT,
             module=DeleteMatchmakingRequest.Constant.MODULE,
             function=DeleteMatchmakingRequest.Constant.FUNCTION,
@@ -374,6 +406,8 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.DescribeMatchmakingRequest import DescribeMatchmakingRequest
 
         from gs2_matchmaking_client.control.DescribeMatchmakingResult import DescribeMatchmakingResult
@@ -403,6 +437,8 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.DescribeServiceClassRequest import DescribeServiceClassRequest
 
         from gs2_matchmaking_client.control.DescribeServiceClassResult import DescribeServiceClassResult
@@ -432,11 +468,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.GetMatchmakingRequest import GetMatchmakingRequest
 
         from gs2_matchmaking_client.control.GetMatchmakingResult import GetMatchmakingResult
         return GetMatchmakingResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "",
             service=self.ENDPOINT,
             module=GetMatchmakingRequest.Constant.MODULE,
             function=GetMatchmakingRequest.Constant.FUNCTION,
@@ -461,11 +499,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         }
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.GetMatchmakingStatusRequest import GetMatchmakingStatusRequest
 
         from gs2_matchmaking_client.control.GetMatchmakingStatusResult import GetMatchmakingStatusResult
         return GetMatchmakingStatusResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/status",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/status",
             service=self.ENDPOINT,
             module=GetMatchmakingStatusRequest.Constant.MODULE,
             function=GetMatchmakingStatusRequest.Constant.FUNCTION,
@@ -492,10 +532,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeBreakupGatheringRequest import PasscodeBreakupGatheringRequest
 
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "",
             service=self.ENDPOINT,
             module=PasscodeBreakupGatheringRequest.Constant.MODULE,
             function=PasscodeBreakupGatheringRequest.Constant.FUNCTION,
@@ -527,11 +569,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeCreateGatheringRequest import PasscodeCreateGatheringRequest
 
         from gs2_matchmaking_client.control.PasscodeCreateGatheringResult import PasscodeCreateGatheringResult
         return PasscodeCreateGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode",
             service=self.ENDPOINT,
             module=PasscodeCreateGatheringRequest.Constant.MODULE,
             function=PasscodeCreateGatheringRequest.Constant.FUNCTION,
@@ -563,11 +607,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeDescribeJoinedUserRequest import PasscodeDescribeJoinedUserRequest
 
         from gs2_matchmaking_client.control.PasscodeDescribeJoinedUserResult import PasscodeDescribeJoinedUserResult
         return PasscodeDescribeJoinedUserResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
             module=PasscodeDescribeJoinedUserRequest.Constant.MODULE,
             function=PasscodeDescribeJoinedUserRequest.Constant.FUNCTION,
@@ -594,10 +640,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeEarlyCompleteGatheringRequest import PasscodeEarlyCompleteGatheringRequest
 
         self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/complete",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/complete",
             service=self.ENDPOINT,
             module=PasscodeEarlyCompleteGatheringRequest.Constant.MODULE,
             function=PasscodeEarlyCompleteGatheringRequest.Constant.FUNCTION,
@@ -625,11 +673,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeJoinGatheringRequest import PasscodeJoinGatheringRequest
 
         from gs2_matchmaking_client.control.PasscodeJoinGatheringResult import PasscodeJoinGatheringResult
         return PasscodeJoinGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/join/" + str(("null" if request.get_passcode() is None else request.get_passcode())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode/join/" + str(("null" if request.get_passcode() is None or request.get_passcode() == "" else request.get_passcode())) + "",
             service=self.ENDPOINT,
             module=PasscodeJoinGatheringRequest.Constant.MODULE,
             function=PasscodeJoinGatheringRequest.Constant.FUNCTION,
@@ -661,10 +711,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeLeaveGatheringRequest import PasscodeLeaveGatheringRequest
 
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
             module=PasscodeLeaveGatheringRequest.Constant.MODULE,
             function=PasscodeLeaveGatheringRequest.Constant.FUNCTION,
@@ -691,10 +743,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomBreakupGatheringRequest import RoomBreakupGatheringRequest
 
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "",
             service=self.ENDPOINT,
             module=RoomBreakupGatheringRequest.Constant.MODULE,
             function=RoomBreakupGatheringRequest.Constant.FUNCTION,
@@ -723,11 +777,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomCreateGatheringRequest import RoomCreateGatheringRequest
 
         from gs2_matchmaking_client.control.RoomCreateGatheringResult import RoomCreateGatheringResult
         return RoomCreateGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room",
             service=self.ENDPOINT,
             module=RoomCreateGatheringRequest.Constant.MODULE,
             function=RoomCreateGatheringRequest.Constant.FUNCTION,
@@ -759,11 +815,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomDescribeGatheringRequest import RoomDescribeGatheringRequest
 
         from gs2_matchmaking_client.control.RoomDescribeGatheringResult import RoomDescribeGatheringResult
         return RoomDescribeGatheringResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room",
             service=self.ENDPOINT,
             module=RoomDescribeGatheringRequest.Constant.MODULE,
             function=RoomDescribeGatheringRequest.Constant.FUNCTION,
@@ -795,11 +853,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomDescribeJoinedUserRequest import RoomDescribeJoinedUserRequest
 
         from gs2_matchmaking_client.control.RoomDescribeJoinedUserResult import RoomDescribeJoinedUserResult
         return RoomDescribeJoinedUserResult(self._do_get_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
             module=RoomDescribeJoinedUserRequest.Constant.MODULE,
             function=RoomDescribeJoinedUserRequest.Constant.FUNCTION,
@@ -826,10 +886,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomEarlyCompleteGatheringRequest import RoomEarlyCompleteGatheringRequest
 
         self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/complete",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/complete",
             service=self.ENDPOINT,
             module=RoomEarlyCompleteGatheringRequest.Constant.MODULE,
             function=RoomEarlyCompleteGatheringRequest.Constant.FUNCTION,
@@ -857,11 +919,13 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomJoinGatheringRequest import RoomJoinGatheringRequest
 
         from gs2_matchmaking_client.control.RoomJoinGatheringResult import RoomJoinGatheringResult
         return RoomJoinGatheringResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "",
             service=self.ENDPOINT,
             module=RoomJoinGatheringRequest.Constant.MODULE,
             function=RoomJoinGatheringRequest.Constant.FUNCTION,
@@ -893,10 +957,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomLeaveGatheringRequest import RoomLeaveGatheringRequest
 
         self._do_delete_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None else request.get_gathering_id())) + "/player",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
             module=RoomLeaveGatheringRequest.Constant.MODULE,
             function=RoomLeaveGatheringRequest.Constant.FUNCTION,
@@ -916,23 +982,41 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         :rtype: gs2_matchmaking_client.control.UpdateMatchmakingResult.UpdateMatchmakingResult
         """
         body = { 
-            "callback": request.get_callback(),
             "serviceClass": request.get_service_class(),
+            "callback": request.get_callback(),
         }
 
         if request.get_description() is not None:
             body["description"] = request.get_description()
-        if request.get_notification_game_name() is not None:
-            body["notificationGameName"] = request.get_notification_game_name()
         if request.get_gathering_pool_name() is not None:
             body["gatheringPoolName"] = request.get_gathering_pool_name()
+        if request.get_notification_game_name() is not None:
+            body["notificationGameName"] = request.get_notification_game_name()
+        if request.get_create_gathering_trigger_script() is not None:
+            body["createGatheringTriggerScript"] = request.get_create_gathering_trigger_script()
+        if request.get_create_gathering_done_trigger_script() is not None:
+            body["createGatheringDoneTriggerScript"] = request.get_create_gathering_done_trigger_script()
+        if request.get_join_gathering_trigger_script() is not None:
+            body["joinGatheringTriggerScript"] = request.get_join_gathering_trigger_script()
+        if request.get_join_gathering_done_trigger_script() is not None:
+            body["joinGatheringDoneTriggerScript"] = request.get_join_gathering_done_trigger_script()
+        if request.get_leave_gathering_trigger_script() is not None:
+            body["leaveGatheringTriggerScript"] = request.get_leave_gathering_trigger_script()
+        if request.get_leave_gathering_done_trigger_script() is not None:
+            body["leaveGatheringDoneTriggerScript"] = request.get_leave_gathering_done_trigger_script()
+        if request.get_breakup_gathering_trigger_script() is not None:
+            body["breakupGatheringTriggerScript"] = request.get_breakup_gathering_trigger_script()
+        if request.get_matchmaking_complete_trigger_script() is not None:
+            body["matchmakingCompleteTriggerScript"] = request.get_matchmaking_complete_trigger_script()
         headers = { 
         }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.UpdateMatchmakingRequest import UpdateMatchmakingRequest
 
         from gs2_matchmaking_client.control.UpdateMatchmakingResult import UpdateMatchmakingResult
         return UpdateMatchmakingResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None else request.get_matchmaking_name())) + "",
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "",
             service=self.ENDPOINT,
             module=UpdateMatchmakingRequest.Constant.MODULE,
             function=UpdateMatchmakingRequest.Constant.FUNCTION,

@@ -18,44 +18,20 @@ class RoomGathering(object):
 
     def __init__(self, params=None):
         if params is None:
-            self.__meta = None
             self.__gathering_id = None
             self.__owner_user_id = None
-            self.__update_at = None
+            self.__meta = None
             self.__join_player = None
             self.__create_at = None
+            self.__update_at = None
         else:
-            self.set_meta(params['meta'] if 'meta' in params.keys() else None)
             self.set_gathering_id(params['gatheringId'] if 'gatheringId' in params.keys() else None)
             self.set_owner_user_id(params['ownerUserId'] if 'ownerUserId' in params.keys() else None)
-            self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
+            self.set_meta(params['meta'] if 'meta' in params.keys() else None)
             self.set_join_player(params['joinPlayer'] if 'joinPlayer' in params.keys() else None)
             self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
+            self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
 
-
-    def get_meta(self):
-        """
-        ギャザリングメタデータ
-ルームの募集条件などを 128バイト以内で指定できます。
-を取得
-        :return: ギャザリングメタデータ
-ルームの募集条件などを 128バイト以内で指定できます。
-
-        :rtype: unicode
-        """
-        return self.__meta
-
-    def set_meta(self, meta):
-        """
-        ギャザリングメタデータ
-ルームの募集条件などを 128バイト以内で指定できます。
-を設定
-        :param meta: ギャザリングメタデータ
-ルームの募集条件などを 128バイト以内で指定できます。
-
-        :type meta: unicode
-        """
-        self.__meta = meta
 
     def get_gathering_id(self):
         """
@@ -89,21 +65,21 @@ class RoomGathering(object):
         """
         self.__owner_user_id = owner_user_id
 
-    def get_update_at(self):
+    def get_meta(self):
         """
-        更新日時(エポック秒)を取得
-        :return: 更新日時(エポック秒)
-        :rtype: int
+        ギャザリングメタデータを取得
+        :return: ギャザリングメタデータ
+        :rtype: unicode
         """
-        return self.__update_at
+        return self.__meta
 
-    def set_update_at(self, update_at):
+    def set_meta(self, meta):
         """
-        更新日時(エポック秒)を設定
-        :param update_at: 更新日時(エポック秒)
-        :type update_at: int
+        ギャザリングメタデータを設定
+        :param meta: ギャザリングメタデータ
+        :type meta: unicode
         """
-        self.__update_at = update_at
+        self.__meta = meta
 
     def get_join_player(self):
         """
@@ -137,12 +113,28 @@ class RoomGathering(object):
         """
         self.__create_at = create_at
 
+    def get_update_at(self):
+        """
+        更新日時(エポック秒)を取得
+        :return: 更新日時(エポック秒)
+        :rtype: int
+        """
+        return self.__update_at
+
+    def set_update_at(self, update_at):
+        """
+        更新日時(エポック秒)を設定
+        :param update_at: 更新日時(エポック秒)
+        :type update_at: int
+        """
+        self.__update_at = update_at
+
     def to_dict(self):
         return { 
-            "meta": self.__meta,
             "gatheringId": self.__gathering_id,
             "ownerUserId": self.__owner_user_id,
-            "updateAt": self.__update_at,
+            "meta": self.__meta,
             "joinPlayer": self.__join_player,
             "createAt": self.__create_at,
+            "updateAt": self.__update_at,
         }

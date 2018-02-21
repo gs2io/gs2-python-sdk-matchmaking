@@ -26,27 +26,11 @@ class CustomAutoDoMatchmakingResult(object):
         :type response: dict
         """
         
-        self.__search_context = unicode(response['searchContext']) if 'searchContext' in response.keys() and response['searchContext'] is not None else None
+        self.__done = bool(response['done']) if 'done' in response.keys() and response['done'] is not None else None
         
         self.__item = CustomAutoGathering(response['item']) if 'item' in response.keys() and response['item'] is not None else None
         
-        self.__done = bool(response['done']) if 'done' in response.keys() and response['done'] is not None else None
-
-    def get_search_context(self):
-        """
-        検索を再開するためのコンテキストを取得
-        :return: 検索を再開するためのコンテキスト
-        :rtype: unicode
-        """
-        return self.__search_context
-
-    def get_item(self):
-        """
-        CustomAutoマッチメイキング ギャザリングを取得
-        :return: CustomAutoマッチメイキング ギャザリング
-        :rtype: CustomAutoGathering
-        """
-        return self.__item
+        self.__search_context = unicode(response['searchContext']) if 'searchContext' in response.keys() and response['searchContext'] is not None else None
 
     def get_done(self):
         """
@@ -56,6 +40,22 @@ class CustomAutoDoMatchmakingResult(object):
         """
         return self.__done
 
+    def get_item(self):
+        """
+        CustomAutoマッチメイキング ギャザリングを取得
+        :return: CustomAutoマッチメイキング ギャザリング
+        :rtype: CustomAutoGathering
+        """
+        return self.__item
+
+    def get_search_context(self):
+        """
+        検索を再開するためのコンテキストを取得
+        :return: 検索を再開するためのコンテキスト
+        :rtype: unicode
+        """
+        return self.__search_context
+
     def to_dict(self):
         """
         辞書配列に変換
@@ -63,10 +63,10 @@ class CustomAutoDoMatchmakingResult(object):
         :rtype: dict
         """
         return { 
-            'searchContext': self.__search_context,
+            'done': self.__done,
         
             'item': self.__item.to_dict(),
         
-            'done': self.__done,
+            'searchContext': self.__search_context,
         
         }

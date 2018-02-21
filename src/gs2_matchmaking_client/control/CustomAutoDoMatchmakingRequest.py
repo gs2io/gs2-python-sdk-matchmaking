@@ -32,40 +32,40 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         super(CustomAutoDoMatchmakingRequest, self).__init__(params)
         if params is None:
             self.__matchmaking_name = None
-            self.__search_attribute2_max = None
-            self.__search_attribute1_min = None
-            self.__search_attribute5_min = None
-            self.__search_attribute4_min = None
-            self.__attribute3 = None
-            self.__search_attribute3_max = None
-            self.__search_attribute4_max = None
-            self.__search_attribute1_max = None
-            self.__search_context = None
-            self.__search_attribute5_max = None
-            self.__search_attribute3_min = None
-            self.__attribute2 = None
-            self.__search_attribute2_min = None
             self.__attribute1 = None
+            self.__attribute2 = None
+            self.__attribute3 = None
             self.__attribute4 = None
             self.__attribute5 = None
+            self.__search_attribute1_min = None
+            self.__search_attribute2_min = None
+            self.__search_attribute3_min = None
+            self.__search_attribute4_min = None
+            self.__search_attribute5_min = None
+            self.__search_attribute1_max = None
+            self.__search_attribute2_max = None
+            self.__search_attribute3_max = None
+            self.__search_attribute4_max = None
+            self.__search_attribute5_max = None
+            self.__search_context = None
         else:
             self.set_matchmaking_name(params['matchmakingName'] if 'matchmakingName' in params.keys() else None)
-            self.set_search_attribute2_max(params['searchAttribute2Max'] if 'searchAttribute2Max' in params.keys() else None)
-            self.set_search_attribute1_min(params['searchAttribute1Min'] if 'searchAttribute1Min' in params.keys() else None)
-            self.set_search_attribute5_min(params['searchAttribute5Min'] if 'searchAttribute5Min' in params.keys() else None)
-            self.set_search_attribute4_min(params['searchAttribute4Min'] if 'searchAttribute4Min' in params.keys() else None)
-            self.set_attribute3(params['attribute3'] if 'attribute3' in params.keys() else None)
-            self.set_search_attribute3_max(params['searchAttribute3Max'] if 'searchAttribute3Max' in params.keys() else None)
-            self.set_search_attribute4_max(params['searchAttribute4Max'] if 'searchAttribute4Max' in params.keys() else None)
-            self.set_search_attribute1_max(params['searchAttribute1Max'] if 'searchAttribute1Max' in params.keys() else None)
-            self.set_search_context(params['searchContext'] if 'searchContext' in params.keys() else None)
-            self.set_search_attribute5_max(params['searchAttribute5Max'] if 'searchAttribute5Max' in params.keys() else None)
-            self.set_search_attribute3_min(params['searchAttribute3Min'] if 'searchAttribute3Min' in params.keys() else None)
-            self.set_attribute2(params['attribute2'] if 'attribute2' in params.keys() else None)
-            self.set_search_attribute2_min(params['searchAttribute2Min'] if 'searchAttribute2Min' in params.keys() else None)
             self.set_attribute1(params['attribute1'] if 'attribute1' in params.keys() else None)
+            self.set_attribute2(params['attribute2'] if 'attribute2' in params.keys() else None)
+            self.set_attribute3(params['attribute3'] if 'attribute3' in params.keys() else None)
             self.set_attribute4(params['attribute4'] if 'attribute4' in params.keys() else None)
             self.set_attribute5(params['attribute5'] if 'attribute5' in params.keys() else None)
+            self.set_search_attribute1_min(params['searchAttribute1Min'] if 'searchAttribute1Min' in params.keys() else None)
+            self.set_search_attribute2_min(params['searchAttribute2Min'] if 'searchAttribute2Min' in params.keys() else None)
+            self.set_search_attribute3_min(params['searchAttribute3Min'] if 'searchAttribute3Min' in params.keys() else None)
+            self.set_search_attribute4_min(params['searchAttribute4Min'] if 'searchAttribute4Min' in params.keys() else None)
+            self.set_search_attribute5_min(params['searchAttribute5Min'] if 'searchAttribute5Min' in params.keys() else None)
+            self.set_search_attribute1_max(params['searchAttribute1Max'] if 'searchAttribute1Max' in params.keys() else None)
+            self.set_search_attribute2_max(params['searchAttribute2Max'] if 'searchAttribute2Max' in params.keys() else None)
+            self.set_search_attribute3_max(params['searchAttribute3Max'] if 'searchAttribute3Max' in params.keys() else None)
+            self.set_search_attribute4_max(params['searchAttribute4Max'] if 'searchAttribute4Max' in params.keys() else None)
+            self.set_search_attribute5_max(params['searchAttribute5Max'] if 'searchAttribute5Max' in params.keys() else None)
+            self.set_search_context(params['searchContext'] if 'searchContext' in params.keys() else None)
 
     def get_matchmaking_name(self):
         """
@@ -96,33 +96,149 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         self.set_matchmaking_name(matchmaking_name)
         return self
 
-    def get_search_attribute2_max(self):
+    def get_attribute1(self):
         """
-        既存のギャザリングに参加する対象とする属性値2の最大値を取得
-        :return: 既存のギャザリングに参加する対象とする属性値2の最大値
+        ギャザリングを新規作成する場合の属性値1を取得
+        :return: ギャザリングを新規作成する場合の属性値1
         :rtype: int
         """
-        return self.__search_attribute2_max
+        return self.__attribute1
 
-    def set_search_attribute2_max(self, search_attribute2_max):
+    def set_attribute1(self, attribute1):
         """
-        既存のギャザリングに参加する対象とする属性値2の最大値を設定
-        :param search_attribute2_max: 既存のギャザリングに参加する対象とする属性値2の最大値
-        :type search_attribute2_max: int
+        ギャザリングを新規作成する場合の属性値1を設定
+        :param attribute1: ギャザリングを新規作成する場合の属性値1
+        :type attribute1: int
         """
-        if not isinstance(search_attribute2_max, int):
-            raise TypeError(type(search_attribute2_max))
-        self.__search_attribute2_max = search_attribute2_max
+        if not isinstance(attribute1, int):
+            raise TypeError(type(attribute1))
+        self.__attribute1 = attribute1
 
-    def with_search_attribute2_max(self, search_attribute2_max):
+    def with_attribute1(self, attribute1):
         """
-        既存のギャザリングに参加する対象とする属性値2の最大値を設定
-        :param search_attribute2_max: 既存のギャザリングに参加する対象とする属性値2の最大値
-        :type search_attribute2_max: int
+        ギャザリングを新規作成する場合の属性値1を設定
+        :param attribute1: ギャザリングを新規作成する場合の属性値1
+        :type attribute1: int
         :return: this
         :rtype: CustomAutoDoMatchmakingRequest
         """
-        self.set_search_attribute2_max(search_attribute2_max)
+        self.set_attribute1(attribute1)
+        return self
+
+    def get_attribute2(self):
+        """
+        ギャザリングを新規作成する場合の属性値2を取得
+        :return: ギャザリングを新規作成する場合の属性値2
+        :rtype: int
+        """
+        return self.__attribute2
+
+    def set_attribute2(self, attribute2):
+        """
+        ギャザリングを新規作成する場合の属性値2を設定
+        :param attribute2: ギャザリングを新規作成する場合の属性値2
+        :type attribute2: int
+        """
+        if not isinstance(attribute2, int):
+            raise TypeError(type(attribute2))
+        self.__attribute2 = attribute2
+
+    def with_attribute2(self, attribute2):
+        """
+        ギャザリングを新規作成する場合の属性値2を設定
+        :param attribute2: ギャザリングを新規作成する場合の属性値2
+        :type attribute2: int
+        :return: this
+        :rtype: CustomAutoDoMatchmakingRequest
+        """
+        self.set_attribute2(attribute2)
+        return self
+
+    def get_attribute3(self):
+        """
+        ギャザリングを新規作成する場合の属性値3を取得
+        :return: ギャザリングを新規作成する場合の属性値3
+        :rtype: int
+        """
+        return self.__attribute3
+
+    def set_attribute3(self, attribute3):
+        """
+        ギャザリングを新規作成する場合の属性値3を設定
+        :param attribute3: ギャザリングを新規作成する場合の属性値3
+        :type attribute3: int
+        """
+        if not isinstance(attribute3, int):
+            raise TypeError(type(attribute3))
+        self.__attribute3 = attribute3
+
+    def with_attribute3(self, attribute3):
+        """
+        ギャザリングを新規作成する場合の属性値3を設定
+        :param attribute3: ギャザリングを新規作成する場合の属性値3
+        :type attribute3: int
+        :return: this
+        :rtype: CustomAutoDoMatchmakingRequest
+        """
+        self.set_attribute3(attribute3)
+        return self
+
+    def get_attribute4(self):
+        """
+        ギャザリングを新規作成する場合の属性値4を取得
+        :return: ギャザリングを新規作成する場合の属性値4
+        :rtype: int
+        """
+        return self.__attribute4
+
+    def set_attribute4(self, attribute4):
+        """
+        ギャザリングを新規作成する場合の属性値4を設定
+        :param attribute4: ギャザリングを新規作成する場合の属性値4
+        :type attribute4: int
+        """
+        if not isinstance(attribute4, int):
+            raise TypeError(type(attribute4))
+        self.__attribute4 = attribute4
+
+    def with_attribute4(self, attribute4):
+        """
+        ギャザリングを新規作成する場合の属性値4を設定
+        :param attribute4: ギャザリングを新規作成する場合の属性値4
+        :type attribute4: int
+        :return: this
+        :rtype: CustomAutoDoMatchmakingRequest
+        """
+        self.set_attribute4(attribute4)
+        return self
+
+    def get_attribute5(self):
+        """
+        ギャザリングを新規作成する場合の属性値5を取得
+        :return: ギャザリングを新規作成する場合の属性値5
+        :rtype: int
+        """
+        return self.__attribute5
+
+    def set_attribute5(self, attribute5):
+        """
+        ギャザリングを新規作成する場合の属性値5を設定
+        :param attribute5: ギャザリングを新規作成する場合の属性値5
+        :type attribute5: int
+        """
+        if not isinstance(attribute5, int):
+            raise TypeError(type(attribute5))
+        self.__attribute5 = attribute5
+
+    def with_attribute5(self, attribute5):
+        """
+        ギャザリングを新規作成する場合の属性値5を設定
+        :param attribute5: ギャザリングを新規作成する場合の属性値5
+        :type attribute5: int
+        :return: this
+        :rtype: CustomAutoDoMatchmakingRequest
+        """
+        self.set_attribute5(attribute5)
         return self
 
     def get_search_attribute1_min(self):
@@ -154,33 +270,62 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         self.set_search_attribute1_min(search_attribute1_min)
         return self
 
-    def get_search_attribute5_min(self):
+    def get_search_attribute2_min(self):
         """
-        既存のギャザリングに参加する対象とする属性値5の最小値を取得
-        :return: 既存のギャザリングに参加する対象とする属性値5の最小値
+        既存のギャザリングに参加する対象とする属性値2の最小値を取得
+        :return: 既存のギャザリングに参加する対象とする属性値2の最小値
         :rtype: int
         """
-        return self.__search_attribute5_min
+        return self.__search_attribute2_min
 
-    def set_search_attribute5_min(self, search_attribute5_min):
+    def set_search_attribute2_min(self, search_attribute2_min):
         """
-        既存のギャザリングに参加する対象とする属性値5の最小値を設定
-        :param search_attribute5_min: 既存のギャザリングに参加する対象とする属性値5の最小値
-        :type search_attribute5_min: int
+        既存のギャザリングに参加する対象とする属性値2の最小値を設定
+        :param search_attribute2_min: 既存のギャザリングに参加する対象とする属性値2の最小値
+        :type search_attribute2_min: int
         """
-        if not isinstance(search_attribute5_min, int):
-            raise TypeError(type(search_attribute5_min))
-        self.__search_attribute5_min = search_attribute5_min
+        if not isinstance(search_attribute2_min, int):
+            raise TypeError(type(search_attribute2_min))
+        self.__search_attribute2_min = search_attribute2_min
 
-    def with_search_attribute5_min(self, search_attribute5_min):
+    def with_search_attribute2_min(self, search_attribute2_min):
         """
-        既存のギャザリングに参加する対象とする属性値5の最小値を設定
-        :param search_attribute5_min: 既存のギャザリングに参加する対象とする属性値5の最小値
-        :type search_attribute5_min: int
+        既存のギャザリングに参加する対象とする属性値2の最小値を設定
+        :param search_attribute2_min: 既存のギャザリングに参加する対象とする属性値2の最小値
+        :type search_attribute2_min: int
         :return: this
         :rtype: CustomAutoDoMatchmakingRequest
         """
-        self.set_search_attribute5_min(search_attribute5_min)
+        self.set_search_attribute2_min(search_attribute2_min)
+        return self
+
+    def get_search_attribute3_min(self):
+        """
+        既存のギャザリングに参加する対象とする属性値3の最小値を取得
+        :return: 既存のギャザリングに参加する対象とする属性値3の最小値
+        :rtype: int
+        """
+        return self.__search_attribute3_min
+
+    def set_search_attribute3_min(self, search_attribute3_min):
+        """
+        既存のギャザリングに参加する対象とする属性値3の最小値を設定
+        :param search_attribute3_min: 既存のギャザリングに参加する対象とする属性値3の最小値
+        :type search_attribute3_min: int
+        """
+        if not isinstance(search_attribute3_min, int):
+            raise TypeError(type(search_attribute3_min))
+        self.__search_attribute3_min = search_attribute3_min
+
+    def with_search_attribute3_min(self, search_attribute3_min):
+        """
+        既存のギャザリングに参加する対象とする属性値3の最小値を設定
+        :param search_attribute3_min: 既存のギャザリングに参加する対象とする属性値3の最小値
+        :type search_attribute3_min: int
+        :return: this
+        :rtype: CustomAutoDoMatchmakingRequest
+        """
+        self.set_search_attribute3_min(search_attribute3_min)
         return self
 
     def get_search_attribute4_min(self):
@@ -212,33 +357,91 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         self.set_search_attribute4_min(search_attribute4_min)
         return self
 
-    def get_attribute3(self):
+    def get_search_attribute5_min(self):
         """
-        ギャザリングを新規作成する場合の属性値3を取得
-        :return: ギャザリングを新規作成する場合の属性値3
+        既存のギャザリングに参加する対象とする属性値5の最小値を取得
+        :return: 既存のギャザリングに参加する対象とする属性値5の最小値
         :rtype: int
         """
-        return self.__attribute3
+        return self.__search_attribute5_min
 
-    def set_attribute3(self, attribute3):
+    def set_search_attribute5_min(self, search_attribute5_min):
         """
-        ギャザリングを新規作成する場合の属性値3を設定
-        :param attribute3: ギャザリングを新規作成する場合の属性値3
-        :type attribute3: int
+        既存のギャザリングに参加する対象とする属性値5の最小値を設定
+        :param search_attribute5_min: 既存のギャザリングに参加する対象とする属性値5の最小値
+        :type search_attribute5_min: int
         """
-        if not isinstance(attribute3, int):
-            raise TypeError(type(attribute3))
-        self.__attribute3 = attribute3
+        if not isinstance(search_attribute5_min, int):
+            raise TypeError(type(search_attribute5_min))
+        self.__search_attribute5_min = search_attribute5_min
 
-    def with_attribute3(self, attribute3):
+    def with_search_attribute5_min(self, search_attribute5_min):
         """
-        ギャザリングを新規作成する場合の属性値3を設定
-        :param attribute3: ギャザリングを新規作成する場合の属性値3
-        :type attribute3: int
+        既存のギャザリングに参加する対象とする属性値5の最小値を設定
+        :param search_attribute5_min: 既存のギャザリングに参加する対象とする属性値5の最小値
+        :type search_attribute5_min: int
         :return: this
         :rtype: CustomAutoDoMatchmakingRequest
         """
-        self.set_attribute3(attribute3)
+        self.set_search_attribute5_min(search_attribute5_min)
+        return self
+
+    def get_search_attribute1_max(self):
+        """
+        既存のギャザリングに参加する対象とする属性値1の最大値を取得
+        :return: 既存のギャザリングに参加する対象とする属性値1の最大値
+        :rtype: int
+        """
+        return self.__search_attribute1_max
+
+    def set_search_attribute1_max(self, search_attribute1_max):
+        """
+        既存のギャザリングに参加する対象とする属性値1の最大値を設定
+        :param search_attribute1_max: 既存のギャザリングに参加する対象とする属性値1の最大値
+        :type search_attribute1_max: int
+        """
+        if not isinstance(search_attribute1_max, int):
+            raise TypeError(type(search_attribute1_max))
+        self.__search_attribute1_max = search_attribute1_max
+
+    def with_search_attribute1_max(self, search_attribute1_max):
+        """
+        既存のギャザリングに参加する対象とする属性値1の最大値を設定
+        :param search_attribute1_max: 既存のギャザリングに参加する対象とする属性値1の最大値
+        :type search_attribute1_max: int
+        :return: this
+        :rtype: CustomAutoDoMatchmakingRequest
+        """
+        self.set_search_attribute1_max(search_attribute1_max)
+        return self
+
+    def get_search_attribute2_max(self):
+        """
+        既存のギャザリングに参加する対象とする属性値2の最大値を取得
+        :return: 既存のギャザリングに参加する対象とする属性値2の最大値
+        :rtype: int
+        """
+        return self.__search_attribute2_max
+
+    def set_search_attribute2_max(self, search_attribute2_max):
+        """
+        既存のギャザリングに参加する対象とする属性値2の最大値を設定
+        :param search_attribute2_max: 既存のギャザリングに参加する対象とする属性値2の最大値
+        :type search_attribute2_max: int
+        """
+        if not isinstance(search_attribute2_max, int):
+            raise TypeError(type(search_attribute2_max))
+        self.__search_attribute2_max = search_attribute2_max
+
+    def with_search_attribute2_max(self, search_attribute2_max):
+        """
+        既存のギャザリングに参加する対象とする属性値2の最大値を設定
+        :param search_attribute2_max: 既存のギャザリングに参加する対象とする属性値2の最大値
+        :type search_attribute2_max: int
+        :return: this
+        :rtype: CustomAutoDoMatchmakingRequest
+        """
+        self.set_search_attribute2_max(search_attribute2_max)
         return self
 
     def get_search_attribute3_max(self):
@@ -299,64 +502,6 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         self.set_search_attribute4_max(search_attribute4_max)
         return self
 
-    def get_search_attribute1_max(self):
-        """
-        既存のギャザリングに参加する対象とする属性値1の最大値を取得
-        :return: 既存のギャザリングに参加する対象とする属性値1の最大値
-        :rtype: int
-        """
-        return self.__search_attribute1_max
-
-    def set_search_attribute1_max(self, search_attribute1_max):
-        """
-        既存のギャザリングに参加する対象とする属性値1の最大値を設定
-        :param search_attribute1_max: 既存のギャザリングに参加する対象とする属性値1の最大値
-        :type search_attribute1_max: int
-        """
-        if not isinstance(search_attribute1_max, int):
-            raise TypeError(type(search_attribute1_max))
-        self.__search_attribute1_max = search_attribute1_max
-
-    def with_search_attribute1_max(self, search_attribute1_max):
-        """
-        既存のギャザリングに参加する対象とする属性値1の最大値を設定
-        :param search_attribute1_max: 既存のギャザリングに参加する対象とする属性値1の最大値
-        :type search_attribute1_max: int
-        :return: this
-        :rtype: CustomAutoDoMatchmakingRequest
-        """
-        self.set_search_attribute1_max(search_attribute1_max)
-        return self
-
-    def get_search_context(self):
-        """
-        中断された検索を再開するためのコンテキストを取得
-        :return: 中断された検索を再開するためのコンテキスト
-        :rtype: unicode
-        """
-        return self.__search_context
-
-    def set_search_context(self, search_context):
-        """
-        中断された検索を再開するためのコンテキストを設定
-        :param search_context: 中断された検索を再開するためのコンテキスト
-        :type search_context: unicode
-        """
-        if not isinstance(search_context, unicode):
-            raise TypeError(type(search_context))
-        self.__search_context = search_context
-
-    def with_search_context(self, search_context):
-        """
-        中断された検索を再開するためのコンテキストを設定
-        :param search_context: 中断された検索を再開するためのコンテキスト
-        :type search_context: unicode
-        :return: this
-        :rtype: CustomAutoDoMatchmakingRequest
-        """
-        self.set_search_context(search_context)
-        return self
-
     def get_search_attribute5_max(self):
         """
         既存のギャザリングに参加する対象とする属性値5の最大値を取得
@@ -386,176 +531,31 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         self.set_search_attribute5_max(search_attribute5_max)
         return self
 
-    def get_search_attribute3_min(self):
+    def get_search_context(self):
         """
-        既存のギャザリングに参加する対象とする属性値3の最小値を取得
-        :return: 既存のギャザリングに参加する対象とする属性値3の最小値
-        :rtype: int
+        中断された検索を再開するためのコンテキストを取得
+        :return: 中断された検索を再開するためのコンテキスト
+        :rtype: unicode
         """
-        return self.__search_attribute3_min
+        return self.__search_context
 
-    def set_search_attribute3_min(self, search_attribute3_min):
+    def set_search_context(self, search_context):
         """
-        既存のギャザリングに参加する対象とする属性値3の最小値を設定
-        :param search_attribute3_min: 既存のギャザリングに参加する対象とする属性値3の最小値
-        :type search_attribute3_min: int
+        中断された検索を再開するためのコンテキストを設定
+        :param search_context: 中断された検索を再開するためのコンテキスト
+        :type search_context: unicode
         """
-        if not isinstance(search_attribute3_min, int):
-            raise TypeError(type(search_attribute3_min))
-        self.__search_attribute3_min = search_attribute3_min
+        if not isinstance(search_context, unicode):
+            raise TypeError(type(search_context))
+        self.__search_context = search_context
 
-    def with_search_attribute3_min(self, search_attribute3_min):
+    def with_search_context(self, search_context):
         """
-        既存のギャザリングに参加する対象とする属性値3の最小値を設定
-        :param search_attribute3_min: 既存のギャザリングに参加する対象とする属性値3の最小値
-        :type search_attribute3_min: int
+        中断された検索を再開するためのコンテキストを設定
+        :param search_context: 中断された検索を再開するためのコンテキスト
+        :type search_context: unicode
         :return: this
         :rtype: CustomAutoDoMatchmakingRequest
         """
-        self.set_search_attribute3_min(search_attribute3_min)
-        return self
-
-    def get_attribute2(self):
-        """
-        ギャザリングを新規作成する場合の属性値2を取得
-        :return: ギャザリングを新規作成する場合の属性値2
-        :rtype: int
-        """
-        return self.__attribute2
-
-    def set_attribute2(self, attribute2):
-        """
-        ギャザリングを新規作成する場合の属性値2を設定
-        :param attribute2: ギャザリングを新規作成する場合の属性値2
-        :type attribute2: int
-        """
-        if not isinstance(attribute2, int):
-            raise TypeError(type(attribute2))
-        self.__attribute2 = attribute2
-
-    def with_attribute2(self, attribute2):
-        """
-        ギャザリングを新規作成する場合の属性値2を設定
-        :param attribute2: ギャザリングを新規作成する場合の属性値2
-        :type attribute2: int
-        :return: this
-        :rtype: CustomAutoDoMatchmakingRequest
-        """
-        self.set_attribute2(attribute2)
-        return self
-
-    def get_search_attribute2_min(self):
-        """
-        既存のギャザリングに参加する対象とする属性値2の最小値を取得
-        :return: 既存のギャザリングに参加する対象とする属性値2の最小値
-        :rtype: int
-        """
-        return self.__search_attribute2_min
-
-    def set_search_attribute2_min(self, search_attribute2_min):
-        """
-        既存のギャザリングに参加する対象とする属性値2の最小値を設定
-        :param search_attribute2_min: 既存のギャザリングに参加する対象とする属性値2の最小値
-        :type search_attribute2_min: int
-        """
-        if not isinstance(search_attribute2_min, int):
-            raise TypeError(type(search_attribute2_min))
-        self.__search_attribute2_min = search_attribute2_min
-
-    def with_search_attribute2_min(self, search_attribute2_min):
-        """
-        既存のギャザリングに参加する対象とする属性値2の最小値を設定
-        :param search_attribute2_min: 既存のギャザリングに参加する対象とする属性値2の最小値
-        :type search_attribute2_min: int
-        :return: this
-        :rtype: CustomAutoDoMatchmakingRequest
-        """
-        self.set_search_attribute2_min(search_attribute2_min)
-        return self
-
-    def get_attribute1(self):
-        """
-        ギャザリングを新規作成する場合の属性値1を取得
-        :return: ギャザリングを新規作成する場合の属性値1
-        :rtype: int
-        """
-        return self.__attribute1
-
-    def set_attribute1(self, attribute1):
-        """
-        ギャザリングを新規作成する場合の属性値1を設定
-        :param attribute1: ギャザリングを新規作成する場合の属性値1
-        :type attribute1: int
-        """
-        if not isinstance(attribute1, int):
-            raise TypeError(type(attribute1))
-        self.__attribute1 = attribute1
-
-    def with_attribute1(self, attribute1):
-        """
-        ギャザリングを新規作成する場合の属性値1を設定
-        :param attribute1: ギャザリングを新規作成する場合の属性値1
-        :type attribute1: int
-        :return: this
-        :rtype: CustomAutoDoMatchmakingRequest
-        """
-        self.set_attribute1(attribute1)
-        return self
-
-    def get_attribute4(self):
-        """
-        ギャザリングを新規作成する場合の属性値4を取得
-        :return: ギャザリングを新規作成する場合の属性値4
-        :rtype: int
-        """
-        return self.__attribute4
-
-    def set_attribute4(self, attribute4):
-        """
-        ギャザリングを新規作成する場合の属性値4を設定
-        :param attribute4: ギャザリングを新規作成する場合の属性値4
-        :type attribute4: int
-        """
-        if not isinstance(attribute4, int):
-            raise TypeError(type(attribute4))
-        self.__attribute4 = attribute4
-
-    def with_attribute4(self, attribute4):
-        """
-        ギャザリングを新規作成する場合の属性値4を設定
-        :param attribute4: ギャザリングを新規作成する場合の属性値4
-        :type attribute4: int
-        :return: this
-        :rtype: CustomAutoDoMatchmakingRequest
-        """
-        self.set_attribute4(attribute4)
-        return self
-
-    def get_attribute5(self):
-        """
-        ギャザリングを新規作成する場合の属性値5を取得
-        :return: ギャザリングを新規作成する場合の属性値5
-        :rtype: int
-        """
-        return self.__attribute5
-
-    def set_attribute5(self, attribute5):
-        """
-        ギャザリングを新規作成する場合の属性値5を設定
-        :param attribute5: ギャザリングを新規作成する場合の属性値5
-        :type attribute5: int
-        """
-        if not isinstance(attribute5, int):
-            raise TypeError(type(attribute5))
-        self.__attribute5 = attribute5
-
-    def with_attribute5(self, attribute5):
-        """
-        ギャザリングを新規作成する場合の属性値5を設定
-        :param attribute5: ギャザリングを新規作成する場合の属性値5
-        :type attribute5: int
-        :return: this
-        :rtype: CustomAutoDoMatchmakingRequest
-        """
-        self.set_attribute5(attribute5)
+        self.set_search_context(search_context)
         return self
