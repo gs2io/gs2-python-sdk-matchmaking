@@ -25,12 +25,10 @@ class AnybodyDescribeJoinedUserResult(object):
         :type response: レスポンスボディ
         :type response: dict
         """
-        
         self.__items = list(
             map(
                 lambda data:
-                unicode(data)
-                ,
+                unicode(data),
                 response['items']
             )
         )
@@ -49,7 +47,6 @@ class AnybodyDescribeJoinedUserResult(object):
         :return: 辞書配列
         :rtype: dict
         """
-        return { 
+        return {
             'items': self.__items,
-        
         }

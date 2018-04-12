@@ -14,8 +14,6 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-import json
-
 from gs2_core_client.Gs2Constant import Gs2Constant
 from gs2_core_client.AbstractGs2Client import AbstractGs2Client
 
@@ -43,15 +41,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         コールバックを受け取ってからは本APIを呼び出さないように実装するべきです。<br>
         <br>
         - 消費クオータ: 3<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.AnybodyDescribeJoinedUserRequest.AnybodyDescribeJoinedUserRequest
         :return: 結果
         :rtype: gs2_matchmaking_client.control.AnybodyDescribeJoinedUserResult.AnybodyDescribeJoinedUserResult
         """
-
         query_strings = {
-
         }
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
@@ -64,14 +59,11 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         return AnybodyDescribeJoinedUserResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/anybody/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
-            module=AnybodyDescribeJoinedUserRequest.Constant.MODULE,
-            function=AnybodyDescribeJoinedUserRequest.Constant.FUNCTION,
+            component=AnybodyDescribeJoinedUserRequest.Constant.MODULE,
+            target_function=AnybodyDescribeJoinedUserRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
-
 
     def anybody_do_matchmaking(self, request):
         """
@@ -100,18 +92,15 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.AnybodyDoMatchmakingRequest import AnybodyDoMatchmakingRequest
-
         from gs2_matchmaking_client.control.AnybodyDoMatchmakingResult import AnybodyDoMatchmakingResult
         return AnybodyDoMatchmakingResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/anybody",
             service=self.ENDPOINT,
-            module=AnybodyDoMatchmakingRequest.Constant.MODULE,
-            function=AnybodyDoMatchmakingRequest.Constant.FUNCTION,
+            component=AnybodyDoMatchmakingRequest.Constant.MODULE,
+            target_function=AnybodyDoMatchmakingRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
 
     def anybody_leave_gathering(self, request):
         """
@@ -126,87 +115,22 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.AnybodyLeaveGatheringRequest.AnybodyLeaveGatheringRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.AnybodyLeaveGatheringRequest import AnybodyLeaveGatheringRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/anybody/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
-            module=AnybodyLeaveGatheringRequest.Constant.MODULE,
-            function=AnybodyLeaveGatheringRequest.Constant.FUNCTION,
+            component=AnybodyLeaveGatheringRequest.Constant.MODULE,
+            target_function=AnybodyLeaveGatheringRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
-
-
-
-
-    def create_matchmaking(self, request):
-        """
-        マッチメイキングを新規作成します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.CreateMatchmakingRequest.CreateMatchmakingRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.CreateMatchmakingResult.CreateMatchmakingResult
-        """
-        body = { 
-            "name": request.get_name(),
-            "serviceClass": request.get_service_class(),
-            "type": request.get_type(),
-            "maxPlayer": request.get_max_player(),
-            "callback": request.get_callback(),
-        }
-
-        if request.get_description() is not None:
-            body["description"] = request.get_description()
-        if request.get_gathering_pool_name() is not None:
-            body["gatheringPoolName"] = request.get_gathering_pool_name()
-        if request.get_notification_game_name() is not None:
-            body["notificationGameName"] = request.get_notification_game_name()
-        if request.get_create_gathering_trigger_script() is not None:
-            body["createGatheringTriggerScript"] = request.get_create_gathering_trigger_script()
-        if request.get_create_gathering_done_trigger_script() is not None:
-            body["createGatheringDoneTriggerScript"] = request.get_create_gathering_done_trigger_script()
-        if request.get_join_gathering_trigger_script() is not None:
-            body["joinGatheringTriggerScript"] = request.get_join_gathering_trigger_script()
-        if request.get_join_gathering_done_trigger_script() is not None:
-            body["joinGatheringDoneTriggerScript"] = request.get_join_gathering_done_trigger_script()
-        if request.get_leave_gathering_trigger_script() is not None:
-            body["leaveGatheringTriggerScript"] = request.get_leave_gathering_trigger_script()
-        if request.get_leave_gathering_done_trigger_script() is not None:
-            body["leaveGatheringDoneTriggerScript"] = request.get_leave_gathering_done_trigger_script()
-        if request.get_breakup_gathering_trigger_script() is not None:
-            body["breakupGatheringTriggerScript"] = request.get_breakup_gathering_trigger_script()
-        if request.get_matchmaking_complete_trigger_script() is not None:
-            body["matchmakingCompleteTriggerScript"] = request.get_matchmaking_complete_trigger_script()
-        headers = { 
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_matchmaking_client.control.CreateMatchmakingRequest import CreateMatchmakingRequest
-
-        from gs2_matchmaking_client.control.CreateMatchmakingResult import CreateMatchmakingResult
-        return CreateMatchmakingResult(self._do_post_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking",
-            service=self.ENDPOINT,
-            module=CreateMatchmakingRequest.Constant.MODULE,
-            function=CreateMatchmakingRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-
 
     def custom_auto_describe_joined_user(self, request):
         """
@@ -217,15 +141,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         コールバックを受け取ってからは本APIを呼び出さないように実装するべきです。<br>
         <br>
         - 消費クオータ: 3<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserRequest.CustomAutoDescribeJoinedUserRequest
         :return: 結果
         :rtype: gs2_matchmaking_client.control.CustomAutoDescribeJoinedUserResult.CustomAutoDescribeJoinedUserResult
         """
-
         query_strings = {
-
         }
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
@@ -238,14 +159,11 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         return CustomAutoDescribeJoinedUserResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/customauto/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
-            module=CustomAutoDescribeJoinedUserRequest.Constant.MODULE,
-            function=CustomAutoDescribeJoinedUserRequest.Constant.FUNCTION,
+            component=CustomAutoDescribeJoinedUserRequest.Constant.MODULE,
+            target_function=CustomAutoDescribeJoinedUserRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
-
 
     def custom_auto_do_matchmaking(self, request):
         """
@@ -271,11 +189,10 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         :rtype: gs2_matchmaking_client.control.CustomAutoDoMatchmakingResult.CustomAutoDoMatchmakingResult
         """
         body = { 
-            "attribute1": request.get_attribute1(),
-            "searchAttribute1Min": request.get_search_attribute1_min(),
-            "searchAttribute1Max": request.get_search_attribute1_max(),
         }
 
+        if request.get_attribute1() is not None:
+            body["attribute1"] = request.get_attribute1()
         if request.get_attribute2() is not None:
             body["attribute2"] = request.get_attribute2()
         if request.get_attribute3() is not None:
@@ -284,6 +201,8 @@ class Gs2MatchmakingClient(AbstractGs2Client):
             body["attribute4"] = request.get_attribute4()
         if request.get_attribute5() is not None:
             body["attribute5"] = request.get_attribute5()
+        if request.get_search_attribute1_min() is not None:
+            body["searchAttribute1Min"] = request.get_search_attribute1_min()
         if request.get_search_attribute2_min() is not None:
             body["searchAttribute2Min"] = request.get_search_attribute2_min()
         if request.get_search_attribute3_min() is not None:
@@ -292,6 +211,8 @@ class Gs2MatchmakingClient(AbstractGs2Client):
             body["searchAttribute4Min"] = request.get_search_attribute4_min()
         if request.get_search_attribute5_min() is not None:
             body["searchAttribute5Min"] = request.get_search_attribute5_min()
+        if request.get_search_attribute1_max() is not None:
+            body["searchAttribute1Max"] = request.get_search_attribute1_max()
         if request.get_search_attribute2_max() is not None:
             body["searchAttribute2Max"] = request.get_search_attribute2_max()
         if request.get_search_attribute3_max() is not None:
@@ -308,18 +229,15 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.CustomAutoDoMatchmakingRequest import CustomAutoDoMatchmakingRequest
-
         from gs2_matchmaking_client.control.CustomAutoDoMatchmakingResult import CustomAutoDoMatchmakingResult
         return CustomAutoDoMatchmakingResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/customauto",
             service=self.ENDPOINT,
-            module=CustomAutoDoMatchmakingRequest.Constant.MODULE,
-            function=CustomAutoDoMatchmakingRequest.Constant.FUNCTION,
+            component=CustomAutoDoMatchmakingRequest.Constant.MODULE,
+            target_function=CustomAutoDoMatchmakingRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
 
     def custom_auto_leave_gathering(self, request):
         """
@@ -334,29 +252,77 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.CustomAutoLeaveGatheringRequest.CustomAutoLeaveGatheringRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.CustomAutoLeaveGatheringRequest import CustomAutoLeaveGatheringRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/customauto/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
-            module=CustomAutoLeaveGatheringRequest.Constant.MODULE,
-            function=CustomAutoLeaveGatheringRequest.Constant.FUNCTION,
+            component=CustomAutoLeaveGatheringRequest.Constant.MODULE,
+            target_function=CustomAutoLeaveGatheringRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
 
+    def create_matchmaking(self, request):
+        """
+        マッチメイキングを新規作成します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.CreateMatchmakingRequest.CreateMatchmakingRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.CreateMatchmakingResult.CreateMatchmakingResult
+        """
+        body = { 
+            "name": request.get_name(),
+            "serviceClass": request.get_service_class(),
+            "type": request.get_type(),
+            "maxPlayer": request.get_max_player(),
+        }
 
+        if request.get_description() is not None:
+            body["description"] = request.get_description()
+        if request.get_gathering_pool_name() is not None:
+            body["gatheringPoolName"] = request.get_gathering_pool_name()
+        if request.get_callback() is not None:
+            body["callback"] = request.get_callback()
+        if request.get_notification_game_name() is not None:
+            body["notificationGameName"] = request.get_notification_game_name()
+        if request.get_create_gathering_trigger_script() is not None:
+            body["createGatheringTriggerScript"] = request.get_create_gathering_trigger_script()
+        if request.get_create_gathering_done_trigger_script() is not None:
+            body["createGatheringDoneTriggerScript"] = request.get_create_gathering_done_trigger_script()
+        if request.get_join_gathering_trigger_script() is not None:
+            body["joinGatheringTriggerScript"] = request.get_join_gathering_trigger_script()
+        if request.get_join_gathering_done_trigger_script() is not None:
+            body["joinGatheringDoneTriggerScript"] = request.get_join_gathering_done_trigger_script()
+        if request.get_leave_gathering_trigger_script() is not None:
+            body["leaveGatheringTriggerScript"] = request.get_leave_gathering_trigger_script()
+        if request.get_leave_gathering_done_trigger_script() is not None:
+            body["leaveGatheringDoneTriggerScript"] = request.get_leave_gathering_done_trigger_script()
+        if request.get_breakup_gathering_trigger_script() is not None:
+            body["breakupGatheringTriggerScript"] = request.get_breakup_gathering_trigger_script()
+        if request.get_matchmaking_complete_trigger_script() is not None:
+            body["matchmakingCompleteTriggerScript"] = request.get_matchmaking_complete_trigger_script()
+        headers = { 
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_matchmaking_client.control.CreateMatchmakingRequest import CreateMatchmakingRequest
+        from gs2_matchmaking_client.control.CreateMatchmakingResult import CreateMatchmakingResult
+        return CreateMatchmakingResult(self._do_post_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking",
+            service=self.ENDPOINT,
+            component=CreateMatchmakingRequest.Constant.MODULE,
+            target_function=CreateMatchmakingRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
 
     def delete_matchmaking(self, request):
         """
@@ -364,45 +330,33 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.DeleteMatchmakingRequest.DeleteMatchmakingRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.DeleteMatchmakingRequest import DeleteMatchmakingRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "",
             service=self.ENDPOINT,
-            module=DeleteMatchmakingRequest.Constant.MODULE,
-            function=DeleteMatchmakingRequest.Constant.FUNCTION,
+            component=DeleteMatchmakingRequest.Constant.MODULE,
+            target_function=DeleteMatchmakingRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
 
-
-
     def describe_matchmaking(self, request):
         """
         マッチメイキングの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.DescribeMatchmakingRequest.DescribeMatchmakingRequest
         :return: 結果
         :rtype: gs2_matchmaking_client.control.DescribeMatchmakingResult.DescribeMatchmakingResult
         """
-
         query_strings = {
-
             'pageToken': request.get_page_token(),
-
             'limit': request.get_limit(),
-
         }
         headers = { 
         }
@@ -414,26 +368,21 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         return DescribeMatchmakingResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking",
             service=self.ENDPOINT,
-            module=DescribeMatchmakingRequest.Constant.MODULE,
-            function=DescribeMatchmakingRequest.Constant.FUNCTION,
+            component=DescribeMatchmakingRequest.Constant.MODULE,
+            target_function=DescribeMatchmakingRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
 
-
-
     def describe_service_class(self, request):
         """
         サービスクラスの一覧を取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.DescribeServiceClassRequest.DescribeServiceClassRequest
         :return: 結果
         :rtype: gs2_matchmaking_client.control.DescribeServiceClassResult.DescribeServiceClassResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -445,26 +394,21 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         return DescribeServiceClassResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/serviceClass",
             service=self.ENDPOINT,
-            module=DescribeServiceClassRequest.Constant.MODULE,
-            function=DescribeServiceClassRequest.Constant.FUNCTION,
+            component=DescribeServiceClassRequest.Constant.MODULE,
+            target_function=DescribeServiceClassRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
 
-
-
     def get_matchmaking(self, request):
         """
         マッチメイキングを取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.GetMatchmakingRequest.GetMatchmakingRequest
         :return: 結果
         :rtype: gs2_matchmaking_client.control.GetMatchmakingResult.GetMatchmakingResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -476,26 +420,21 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         return GetMatchmakingResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "",
             service=self.ENDPOINT,
-            module=GetMatchmakingRequest.Constant.MODULE,
-            function=GetMatchmakingRequest.Constant.FUNCTION,
+            component=GetMatchmakingRequest.Constant.MODULE,
+            target_function=GetMatchmakingRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
 
-
-
     def get_matchmaking_status(self, request):
         """
         マッチメイキングのステータスを取得します<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.GetMatchmakingStatusRequest.GetMatchmakingStatusRequest
         :return: 結果
         :rtype: gs2_matchmaking_client.control.GetMatchmakingStatusResult.GetMatchmakingStatusResult
         """
-
         query_strings = {
-
         }
         headers = { 
         }
@@ -507,13 +446,62 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         return GetMatchmakingStatusResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/status",
             service=self.ENDPOINT,
-            module=GetMatchmakingStatusRequest.Constant.MODULE,
-            function=GetMatchmakingStatusRequest.Constant.FUNCTION,
+            component=GetMatchmakingStatusRequest.Constant.MODULE,
+            target_function=GetMatchmakingStatusRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
 
-
+    def update_matchmaking(self, request):
+        """
+        マッチメイキングを更新します<br>
+        <br>
+        :param request: リクエストパラメータ
+        :type request: gs2_matchmaking_client.control.UpdateMatchmakingRequest.UpdateMatchmakingRequest
+        :return: 結果
+        :rtype: gs2_matchmaking_client.control.UpdateMatchmakingResult.UpdateMatchmakingResult
+        """
+        body = { 
+            "serviceClass": request.get_service_class(),
+        }
+        if request.get_description() is not None:
+            body["description"] = request.get_description()
+        if request.get_gathering_pool_name() is not None:
+            body["gatheringPoolName"] = request.get_gathering_pool_name()
+        if request.get_callback() is not None:
+            body["callback"] = request.get_callback()
+        if request.get_notification_game_name() is not None:
+            body["notificationGameName"] = request.get_notification_game_name()
+        if request.get_create_gathering_trigger_script() is not None:
+            body["createGatheringTriggerScript"] = request.get_create_gathering_trigger_script()
+        if request.get_create_gathering_done_trigger_script() is not None:
+            body["createGatheringDoneTriggerScript"] = request.get_create_gathering_done_trigger_script()
+        if request.get_join_gathering_trigger_script() is not None:
+            body["joinGatheringTriggerScript"] = request.get_join_gathering_trigger_script()
+        if request.get_join_gathering_done_trigger_script() is not None:
+            body["joinGatheringDoneTriggerScript"] = request.get_join_gathering_done_trigger_script()
+        if request.get_leave_gathering_trigger_script() is not None:
+            body["leaveGatheringTriggerScript"] = request.get_leave_gathering_trigger_script()
+        if request.get_leave_gathering_done_trigger_script() is not None:
+            body["leaveGatheringDoneTriggerScript"] = request.get_leave_gathering_done_trigger_script()
+        if request.get_breakup_gathering_trigger_script() is not None:
+            body["breakupGatheringTriggerScript"] = request.get_breakup_gathering_trigger_script()
+        if request.get_matchmaking_complete_trigger_script() is not None:
+            body["matchmakingCompleteTriggerScript"] = request.get_matchmaking_complete_trigger_script()
+        headers = { 
+        }
+        if request.get_request_id() is not None:
+            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
+        from gs2_matchmaking_client.control.UpdateMatchmakingRequest import UpdateMatchmakingRequest
+        from gs2_matchmaking_client.control.UpdateMatchmakingResult import UpdateMatchmakingResult
+        return UpdateMatchmakingResult(self._do_put_request(
+            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "",
+            service=self.ENDPOINT,
+            component=UpdateMatchmakingRequest.Constant.MODULE,
+            target_function=UpdateMatchmakingRequest.Constant.FUNCTION,
+            body=body,
+            headers=headers
+        ))
 
     def passcode_breakup_gathering(self, request):
         """
@@ -523,30 +511,22 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.PasscodeBreakupGatheringRequest.PasscodeBreakupGatheringRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeBreakupGatheringRequest import PasscodeBreakupGatheringRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "",
             service=self.ENDPOINT,
-            module=PasscodeBreakupGatheringRequest.Constant.MODULE,
-            function=PasscodeBreakupGatheringRequest.Constant.FUNCTION,
+            component=PasscodeBreakupGatheringRequest.Constant.MODULE,
+            target_function=PasscodeBreakupGatheringRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
-
-
-
 
     def passcode_create_gathering(self, request):
         """
@@ -572,18 +552,15 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeCreateGatheringRequest import PasscodeCreateGatheringRequest
-
         from gs2_matchmaking_client.control.PasscodeCreateGatheringResult import PasscodeCreateGatheringResult
         return PasscodeCreateGatheringResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode",
             service=self.ENDPOINT,
-            module=PasscodeCreateGatheringRequest.Constant.MODULE,
-            function=PasscodeCreateGatheringRequest.Constant.FUNCTION,
+            component=PasscodeCreateGatheringRequest.Constant.MODULE,
+            target_function=PasscodeCreateGatheringRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
 
     def passcode_describe_joined_user(self, request):
         """
@@ -594,15 +571,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         コールバックを受け取ってからは本APIを呼び出さないように実装するべきです。<br>
         <br>
         - 消費クオータ: 3<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.PasscodeDescribeJoinedUserRequest.PasscodeDescribeJoinedUserRequest
         :return: 結果
         :rtype: gs2_matchmaking_client.control.PasscodeDescribeJoinedUserResult.PasscodeDescribeJoinedUserResult
         """
-
         query_strings = {
-
         }
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
@@ -615,14 +589,11 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         return PasscodeDescribeJoinedUserResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
-            module=PasscodeDescribeJoinedUserRequest.Constant.MODULE,
-            function=PasscodeDescribeJoinedUserRequest.Constant.FUNCTION,
+            component=PasscodeDescribeJoinedUserRequest.Constant.MODULE,
+            target_function=PasscodeDescribeJoinedUserRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
-
 
     def passcode_early_complete_gathering(self, request):
         """
@@ -632,7 +603,6 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.PasscodeEarlyCompleteGatheringRequest.PasscodeEarlyCompleteGatheringRequest
-
         """
         body = { 
         }
@@ -643,18 +613,14 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeEarlyCompleteGatheringRequest import PasscodeEarlyCompleteGatheringRequest
-
         self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/complete",
             service=self.ENDPOINT,
-            module=PasscodeEarlyCompleteGatheringRequest.Constant.MODULE,
-            function=PasscodeEarlyCompleteGatheringRequest.Constant.FUNCTION,
+            component=PasscodeEarlyCompleteGatheringRequest.Constant.MODULE,
+            target_function=PasscodeEarlyCompleteGatheringRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         )
-
-
-
 
     def passcode_join_gathering(self, request):
         """
@@ -676,18 +642,15 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeJoinGatheringRequest import PasscodeJoinGatheringRequest
-
         from gs2_matchmaking_client.control.PasscodeJoinGatheringResult import PasscodeJoinGatheringResult
         return PasscodeJoinGatheringResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode/join/" + str(("null" if request.get_passcode() is None or request.get_passcode() == "" else request.get_passcode())) + "",
             service=self.ENDPOINT,
-            module=PasscodeJoinGatheringRequest.Constant.MODULE,
-            function=PasscodeJoinGatheringRequest.Constant.FUNCTION,
+            component=PasscodeJoinGatheringRequest.Constant.MODULE,
+            target_function=PasscodeJoinGatheringRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
 
     def passcode_leave_gathering(self, request):
         """
@@ -702,29 +665,22 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.PasscodeLeaveGatheringRequest.PasscodeLeaveGatheringRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.PasscodeLeaveGatheringRequest import PasscodeLeaveGatheringRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/passcode/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
-            module=PasscodeLeaveGatheringRequest.Constant.MODULE,
-            function=PasscodeLeaveGatheringRequest.Constant.FUNCTION,
+            component=PasscodeLeaveGatheringRequest.Constant.MODULE,
+            target_function=PasscodeLeaveGatheringRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
-
-
 
     def room_breakup_gathering(self, request):
         """
@@ -734,30 +690,22 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.RoomBreakupGatheringRequest.RoomBreakupGatheringRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomBreakupGatheringRequest import RoomBreakupGatheringRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "",
             service=self.ENDPOINT,
-            module=RoomBreakupGatheringRequest.Constant.MODULE,
-            function=RoomBreakupGatheringRequest.Constant.FUNCTION,
+            component=RoomBreakupGatheringRequest.Constant.MODULE,
+            target_function=RoomBreakupGatheringRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
-
-
-
 
     def room_create_gathering(self, request):
         """
@@ -771,46 +719,39 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         :rtype: gs2_matchmaking_client.control.RoomCreateGatheringResult.RoomCreateGatheringResult
         """
         body = { 
-            "meta": request.get_meta(),
         }
 
+        if request.get_meta() is not None:
+            body["meta"] = request.get_meta()
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomCreateGatheringRequest import RoomCreateGatheringRequest
-
         from gs2_matchmaking_client.control.RoomCreateGatheringResult import RoomCreateGatheringResult
         return RoomCreateGatheringResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room",
             service=self.ENDPOINT,
-            module=RoomCreateGatheringRequest.Constant.MODULE,
-            function=RoomCreateGatheringRequest.Constant.FUNCTION,
+            component=RoomCreateGatheringRequest.Constant.MODULE,
+            target_function=RoomCreateGatheringRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
 
     def room_describe_gathering(self, request):
         """
         ギャザリング一覧を取得します<br>
         <br>
         - 消費クオータ: 20件あたり3クオータ<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.RoomDescribeGatheringRequest.RoomDescribeGatheringRequest
         :return: 結果
         :rtype: gs2_matchmaking_client.control.RoomDescribeGatheringResult.RoomDescribeGatheringResult
         """
-
         query_strings = {
-
             'pageToken': request.get_page_token(),
-
             'limit': request.get_limit(),
-
         }
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
@@ -823,13 +764,11 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         return RoomDescribeGatheringResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room",
             service=self.ENDPOINT,
-            module=RoomDescribeGatheringRequest.Constant.MODULE,
-            function=RoomDescribeGatheringRequest.Constant.FUNCTION,
+            component=RoomDescribeGatheringRequest.Constant.MODULE,
+            target_function=RoomDescribeGatheringRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
 
     def room_describe_joined_user(self, request):
         """
@@ -840,15 +779,12 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         コールバックを受け取ってからは本APIを呼び出さないように実装するべきです。<br>
         <br>
         - 消費クオータ: 3<br>
-        <br>
-        :param request: リクエストパラメータ
+        <br>:param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.RoomDescribeJoinedUserRequest.RoomDescribeJoinedUserRequest
         :return: 結果
         :rtype: gs2_matchmaking_client.control.RoomDescribeJoinedUserResult.RoomDescribeJoinedUserResult
         """
-
         query_strings = {
-
         }
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
@@ -861,14 +797,11 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         return RoomDescribeJoinedUserResult(self._do_get_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
-            module=RoomDescribeJoinedUserRequest.Constant.MODULE,
-            function=RoomDescribeJoinedUserRequest.Constant.FUNCTION,
+            component=RoomDescribeJoinedUserRequest.Constant.MODULE,
+            target_function=RoomDescribeJoinedUserRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         ))
-
-
-
 
     def room_early_complete_gathering(self, request):
         """
@@ -878,7 +811,6 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.RoomEarlyCompleteGatheringRequest.RoomEarlyCompleteGatheringRequest
-
         """
         body = { 
         }
@@ -889,18 +821,14 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomEarlyCompleteGatheringRequest import RoomEarlyCompleteGatheringRequest
-
         self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/complete",
             service=self.ENDPOINT,
-            module=RoomEarlyCompleteGatheringRequest.Constant.MODULE,
-            function=RoomEarlyCompleteGatheringRequest.Constant.FUNCTION,
+            component=RoomEarlyCompleteGatheringRequest.Constant.MODULE,
+            target_function=RoomEarlyCompleteGatheringRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         )
-
-
-
 
     def room_join_gathering(self, request):
         """
@@ -922,18 +850,15 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomJoinGatheringRequest import RoomJoinGatheringRequest
-
         from gs2_matchmaking_client.control.RoomJoinGatheringResult import RoomJoinGatheringResult
         return RoomJoinGatheringResult(self._do_post_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "",
             service=self.ENDPOINT,
-            module=RoomJoinGatheringRequest.Constant.MODULE,
-            function=RoomJoinGatheringRequest.Constant.FUNCTION,
+            component=RoomJoinGatheringRequest.Constant.MODULE,
+            target_function=RoomJoinGatheringRequest.Constant.FUNCTION,
             body=body,
             headers=headers
         ))
-
-
 
     def room_leave_gathering(self, request):
         """
@@ -948,80 +873,19 @@ class Gs2MatchmakingClient(AbstractGs2Client):
         <br>
         :param request: リクエストパラメータ
         :type request: gs2_matchmaking_client.control.RoomLeaveGatheringRequest.RoomLeaveGatheringRequest
-
         """
-
-        query_strings = {
-
-        }
+        query_strings = {}
         headers = { 
             "X-GS2-ACCESS-TOKEN": request.get_access_token()
         }
         if request.get_request_id() is not None:
             headers["X-GS2-REQUEST-ID"] = request.get_request_id()
         from gs2_matchmaking_client.control.RoomLeaveGatheringRequest import RoomLeaveGatheringRequest
-
         self._do_delete_request(
             url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "/room/" + str(("null" if request.get_gathering_id() is None or request.get_gathering_id() == "" else request.get_gathering_id())) + "/player",
             service=self.ENDPOINT,
-            module=RoomLeaveGatheringRequest.Constant.MODULE,
-            function=RoomLeaveGatheringRequest.Constant.FUNCTION,
+            component=RoomLeaveGatheringRequest.Constant.MODULE,
+            target_function=RoomLeaveGatheringRequest.Constant.FUNCTION,
             query_strings=query_strings,
             headers=headers
         )
-
-
-
-    def update_matchmaking(self, request):
-        """
-        マッチメイキングを更新します<br>
-        <br>
-        :param request: リクエストパラメータ
-        :type request: gs2_matchmaking_client.control.UpdateMatchmakingRequest.UpdateMatchmakingRequest
-        :return: 結果
-        :rtype: gs2_matchmaking_client.control.UpdateMatchmakingResult.UpdateMatchmakingResult
-        """
-        body = { 
-            "serviceClass": request.get_service_class(),
-            "callback": request.get_callback(),
-        }
-
-        if request.get_description() is not None:
-            body["description"] = request.get_description()
-        if request.get_gathering_pool_name() is not None:
-            body["gatheringPoolName"] = request.get_gathering_pool_name()
-        if request.get_notification_game_name() is not None:
-            body["notificationGameName"] = request.get_notification_game_name()
-        if request.get_create_gathering_trigger_script() is not None:
-            body["createGatheringTriggerScript"] = request.get_create_gathering_trigger_script()
-        if request.get_create_gathering_done_trigger_script() is not None:
-            body["createGatheringDoneTriggerScript"] = request.get_create_gathering_done_trigger_script()
-        if request.get_join_gathering_trigger_script() is not None:
-            body["joinGatheringTriggerScript"] = request.get_join_gathering_trigger_script()
-        if request.get_join_gathering_done_trigger_script() is not None:
-            body["joinGatheringDoneTriggerScript"] = request.get_join_gathering_done_trigger_script()
-        if request.get_leave_gathering_trigger_script() is not None:
-            body["leaveGatheringTriggerScript"] = request.get_leave_gathering_trigger_script()
-        if request.get_leave_gathering_done_trigger_script() is not None:
-            body["leaveGatheringDoneTriggerScript"] = request.get_leave_gathering_done_trigger_script()
-        if request.get_breakup_gathering_trigger_script() is not None:
-            body["breakupGatheringTriggerScript"] = request.get_breakup_gathering_trigger_script()
-        if request.get_matchmaking_complete_trigger_script() is not None:
-            body["matchmakingCompleteTriggerScript"] = request.get_matchmaking_complete_trigger_script()
-        headers = { 
-        }
-        if request.get_request_id() is not None:
-            headers["X-GS2-REQUEST-ID"] = request.get_request_id()
-        from gs2_matchmaking_client.control.UpdateMatchmakingRequest import UpdateMatchmakingRequest
-
-        from gs2_matchmaking_client.control.UpdateMatchmakingResult import UpdateMatchmakingResult
-        return UpdateMatchmakingResult(self._do_put_request(
-            url=Gs2Constant.ENDPOINT_HOST + "/matchmaking/" + str(("null" if request.get_matchmaking_name() is None or request.get_matchmaking_name() == "" else request.get_matchmaking_name())) + "",
-            service=self.ENDPOINT,
-            module=UpdateMatchmakingRequest.Constant.MODULE,
-            function=UpdateMatchmakingRequest.Constant.FUNCTION,
-            body=body,
-            headers=headers
-        ))
-
-

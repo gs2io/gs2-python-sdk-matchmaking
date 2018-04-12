@@ -25,7 +25,6 @@ class RoomJoinGatheringResult(object):
         :type response: レスポンスボディ
         :type response: dict
         """
-        
         self.__item = RoomGathering(response['item']) if 'item' in response.keys() and response['item'] is not None else None
 
     def get_item(self):
@@ -42,7 +41,6 @@ class RoomJoinGatheringResult(object):
         :return: 辞書配列
         :rtype: dict
         """
-        return { 
+        return {
             'item': self.__item.to_dict(),
-        
         }

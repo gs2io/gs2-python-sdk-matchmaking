@@ -32,37 +32,67 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         super(CreateMatchmakingRequest, self).__init__(params)
         if params is None:
             self.__name = None
-            self.__description = None
-            self.__service_class = None
-            self.__type = None
-            self.__max_player = None
-            self.__gathering_pool_name = None
-            self.__callback = None
-            self.__notification_game_name = None
-            self.__create_gathering_trigger_script = None
-            self.__create_gathering_done_trigger_script = None
-            self.__join_gathering_trigger_script = None
-            self.__join_gathering_done_trigger_script = None
-            self.__leave_gathering_trigger_script = None
-            self.__leave_gathering_done_trigger_script = None
-            self.__breakup_gathering_trigger_script = None
-            self.__matchmaking_complete_trigger_script = None
         else:
             self.set_name(params['name'] if 'name' in params.keys() else None)
+        if params is None:
+            self.__description = None
+        else:
             self.set_description(params['description'] if 'description' in params.keys() else None)
+        if params is None:
+            self.__service_class = None
+        else:
             self.set_service_class(params['serviceClass'] if 'serviceClass' in params.keys() else None)
+        if params is None:
+            self.__type = None
+        else:
             self.set_type(params['type'] if 'type' in params.keys() else None)
+        if params is None:
+            self.__max_player = None
+        else:
             self.set_max_player(params['maxPlayer'] if 'maxPlayer' in params.keys() else None)
+        if params is None:
+            self.__gathering_pool_name = None
+        else:
             self.set_gathering_pool_name(params['gatheringPoolName'] if 'gatheringPoolName' in params.keys() else None)
+        if params is None:
+            self.__callback = None
+        else:
             self.set_callback(params['callback'] if 'callback' in params.keys() else None)
+        if params is None:
+            self.__notification_game_name = None
+        else:
             self.set_notification_game_name(params['notificationGameName'] if 'notificationGameName' in params.keys() else None)
+        if params is None:
+            self.__create_gathering_trigger_script = None
+        else:
             self.set_create_gathering_trigger_script(params['createGatheringTriggerScript'] if 'createGatheringTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__create_gathering_done_trigger_script = None
+        else:
             self.set_create_gathering_done_trigger_script(params['createGatheringDoneTriggerScript'] if 'createGatheringDoneTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__join_gathering_trigger_script = None
+        else:
             self.set_join_gathering_trigger_script(params['joinGatheringTriggerScript'] if 'joinGatheringTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__join_gathering_done_trigger_script = None
+        else:
             self.set_join_gathering_done_trigger_script(params['joinGatheringDoneTriggerScript'] if 'joinGatheringDoneTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__leave_gathering_trigger_script = None
+        else:
             self.set_leave_gathering_trigger_script(params['leaveGatheringTriggerScript'] if 'leaveGatheringTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__leave_gathering_done_trigger_script = None
+        else:
             self.set_leave_gathering_done_trigger_script(params['leaveGatheringDoneTriggerScript'] if 'leaveGatheringDoneTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__breakup_gathering_trigger_script = None
+        else:
             self.set_breakup_gathering_trigger_script(params['breakupGatheringTriggerScript'] if 'breakupGatheringTriggerScript' in params.keys() else None)
+        if params is None:
+            self.__matchmaking_complete_trigger_script = None
+        else:
             self.set_matchmaking_complete_trigger_script(params['matchmakingCompleteTriggerScript'] if 'matchmakingCompleteTriggerScript' in params.keys() else None)
 
     def get_name(self):
@@ -79,6 +109,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param name: マッチメイキングの名前
         :type name: unicode
         """
+        if not isinstance(name, unicode):
+            raise TypeError(type(name))
         self.__name = name
 
     def with_name(self, name):
@@ -106,6 +138,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param description: マッチメイキングの説明
         :type description: unicode
         """
+        if not isinstance(description, unicode):
+            raise TypeError(type(description))
         self.__description = description
 
     def with_description(self, description):
@@ -133,6 +167,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param service_class: マッチメイキングのサービスクラス
         :type service_class: unicode
         """
+        if not isinstance(service_class, unicode):
+            raise TypeError(type(service_class))
         self.__service_class = service_class
 
     def with_service_class(self, service_class):
@@ -144,33 +180,6 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :rtype: CreateMatchmakingRequest
         """
         self.set_service_class(service_class)
-        return self
-
-    def get_type(self):
-        """
-        マッチメイキングの種類を取得
-        :return: マッチメイキングの種類
-        :rtype: unicode
-        """
-        return self.__type
-
-    def set_type(self, type):
-        """
-        マッチメイキングの種類を設定
-        :param type: マッチメイキングの種類
-        :type type: unicode
-        """
-        self.__type = type
-
-    def with_type(self, type):
-        """
-        マッチメイキングの種類を設定
-        :param type: マッチメイキングの種類
-        :type type: unicode
-        :return: this
-        :rtype: CreateMatchmakingRequest
-        """
-        self.set_type(type)
         return self
 
     def get_max_player(self):
@@ -187,6 +196,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param max_player: 最大プレイヤー数
         :type max_player: int
         """
+        if not isinstance(max_player, int):
+            raise TypeError(type(max_player))
         self.__max_player = max_player
 
     def with_max_player(self, max_player):
@@ -214,6 +225,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param gathering_pool_name: GS2-Realtime のギャザリングプール名
         :type gathering_pool_name: unicode
         """
+        if not isinstance(gathering_pool_name, unicode):
+            raise TypeError(type(gathering_pool_name))
         self.__gathering_pool_name = gathering_pool_name
 
     def with_gathering_pool_name(self, gathering_pool_name):
@@ -241,6 +254,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param callback: マッチメイキング完了コールバックURL
         :type callback: unicode
         """
+        if not isinstance(callback, unicode):
+            raise TypeError(type(callback))
         self.__callback = callback
 
     def with_callback(self, callback):
@@ -268,6 +283,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param notification_game_name: GS2-InGamePushNotification のゲーム名
         :type notification_game_name: unicode
         """
+        if not isinstance(notification_game_name, unicode):
+            raise TypeError(type(notification_game_name))
         self.__notification_game_name = notification_game_name
 
     def with_notification_game_name(self, notification_game_name):
@@ -295,6 +312,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param create_gathering_trigger_script: ギャザリング作成時 に実行されるGS2-Script
         :type create_gathering_trigger_script: unicode
         """
+        if not isinstance(create_gathering_trigger_script, unicode):
+            raise TypeError(type(create_gathering_trigger_script))
         self.__create_gathering_trigger_script = create_gathering_trigger_script
 
     def with_create_gathering_trigger_script(self, create_gathering_trigger_script):
@@ -322,6 +341,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param create_gathering_done_trigger_script: ギャザリング作成完了時 に実行されるGS2-Script
         :type create_gathering_done_trigger_script: unicode
         """
+        if not isinstance(create_gathering_done_trigger_script, unicode):
+            raise TypeError(type(create_gathering_done_trigger_script))
         self.__create_gathering_done_trigger_script = create_gathering_done_trigger_script
 
     def with_create_gathering_done_trigger_script(self, create_gathering_done_trigger_script):
@@ -349,6 +370,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param join_gathering_trigger_script: ギャザリング参加時 に実行されるGS2-Script
         :type join_gathering_trigger_script: unicode
         """
+        if not isinstance(join_gathering_trigger_script, unicode):
+            raise TypeError(type(join_gathering_trigger_script))
         self.__join_gathering_trigger_script = join_gathering_trigger_script
 
     def with_join_gathering_trigger_script(self, join_gathering_trigger_script):
@@ -376,6 +399,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param join_gathering_done_trigger_script: ギャザリング参加完了時 に実行されるGS2-Script
         :type join_gathering_done_trigger_script: unicode
         """
+        if not isinstance(join_gathering_done_trigger_script, unicode):
+            raise TypeError(type(join_gathering_done_trigger_script))
         self.__join_gathering_done_trigger_script = join_gathering_done_trigger_script
 
     def with_join_gathering_done_trigger_script(self, join_gathering_done_trigger_script):
@@ -403,6 +428,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param leave_gathering_trigger_script: ギャザリング離脱時 に実行されるGS2-Script
         :type leave_gathering_trigger_script: unicode
         """
+        if not isinstance(leave_gathering_trigger_script, unicode):
+            raise TypeError(type(leave_gathering_trigger_script))
         self.__leave_gathering_trigger_script = leave_gathering_trigger_script
 
     def with_leave_gathering_trigger_script(self, leave_gathering_trigger_script):
@@ -430,6 +457,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param leave_gathering_done_trigger_script: ギャザリング離脱完了時 に実行されるGS2-Script
         :type leave_gathering_done_trigger_script: unicode
         """
+        if not isinstance(leave_gathering_done_trigger_script, unicode):
+            raise TypeError(type(leave_gathering_done_trigger_script))
         self.__leave_gathering_done_trigger_script = leave_gathering_done_trigger_script
 
     def with_leave_gathering_done_trigger_script(self, leave_gathering_done_trigger_script):
@@ -457,6 +486,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param breakup_gathering_trigger_script: ギャザリング解散時 に実行されるGS2-Script
         :type breakup_gathering_trigger_script: unicode
         """
+        if not isinstance(breakup_gathering_trigger_script, unicode):
+            raise TypeError(type(breakup_gathering_trigger_script))
         self.__breakup_gathering_trigger_script = breakup_gathering_trigger_script
 
     def with_breakup_gathering_trigger_script(self, breakup_gathering_trigger_script):
@@ -484,6 +515,8 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param matchmaking_complete_trigger_script: マッチメイキング成立時 に実行されるGS2-Script
         :type matchmaking_complete_trigger_script: unicode
         """
+        if not isinstance(matchmaking_complete_trigger_script, unicode):
+            raise TypeError(type(matchmaking_complete_trigger_script))
         self.__matchmaking_complete_trigger_script = matchmaking_complete_trigger_script
 
     def with_matchmaking_complete_trigger_script(self, matchmaking_complete_trigger_script):
@@ -495,4 +528,33 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :rtype: CreateMatchmakingRequest
         """
         self.set_matchmaking_complete_trigger_script(matchmaking_complete_trigger_script)
+        return self
+
+    def get_type(self):
+        """
+        マッチメイキングの種類を取得
+        :return: マッチメイキングの種類
+        :rtype: unicode
+        """
+        return self.__type
+
+    def set_type(self, _type):
+        """
+        マッチメイキングの種類を設定
+        :param _type: マッチメイキングの種類
+        :type _type: unicode
+        """
+        if not isinstance(_type, unicode):
+            raise TypeError(type(_type))
+        self.__type = _type
+
+    def with_type(self, _type):
+        """
+        マッチメイキングの種類を設定
+        :param _type: マッチメイキングの種類
+        :type _type: unicode
+        :return: this
+        :rtype: CreateMatchmakingRequest
+        """
+        self.set_type(_type)
         return self

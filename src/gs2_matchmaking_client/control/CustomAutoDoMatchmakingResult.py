@@ -25,11 +25,8 @@ class CustomAutoDoMatchmakingResult(object):
         :type response: レスポンスボディ
         :type response: dict
         """
-        
         self.__done = bool(response['done']) if 'done' in response.keys() and response['done'] is not None else None
-        
         self.__item = CustomAutoGathering(response['item']) if 'item' in response.keys() and response['item'] is not None else None
-        
         self.__search_context = unicode(response['searchContext']) if 'searchContext' in response.keys() and response['searchContext'] is not None else None
 
     def get_done(self):
@@ -62,11 +59,8 @@ class CustomAutoDoMatchmakingResult(object):
         :return: 辞書配列
         :rtype: dict
         """
-        return { 
+        return {
             'done': self.__done,
-        
             'item': self.__item.to_dict(),
-        
             'searchContext': self.__search_context,
-        
         }

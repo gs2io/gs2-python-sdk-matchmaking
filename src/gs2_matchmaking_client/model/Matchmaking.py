@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class Matchmaking(object):
 
     def __init__(self, params=None):
@@ -59,7 +60,6 @@ class Matchmaking(object):
             self.set_matchmaking_complete_trigger_script(params['matchmakingCompleteTriggerScript'] if 'matchmakingCompleteTriggerScript' in params.keys() else None)
             self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
             self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
-
 
     def get_matchmaking_id(self):
         """
@@ -108,22 +108,6 @@ class Matchmaking(object):
         :type name: unicode
         """
         self.__name = name
-
-    def get_type(self):
-        """
-        マッチメイキング方式を取得
-        :return: マッチメイキング方式
-        :rtype: unicode
-        """
-        return self.__type
-
-    def set_type(self, type):
-        """
-        マッチメイキング方式を設定
-        :param type: マッチメイキング方式
-        :type type: unicode
-        """
-        self.__type = type
 
     def get_description(self):
         """
@@ -381,8 +365,24 @@ class Matchmaking(object):
         """
         self.__update_at = update_at
 
+    def get_type(self):
+        """
+        マッチメイキング方式を取得
+        :return: マッチメイキング方式
+        :rtype: unicode
+        """
+        return self.__type
+
+    def set_type(self, _type):
+        """
+        マッチメイキング方式を設定
+        :param _type: マッチメイキング方式
+        :type _type: unicode
+        """
+        self.__type = _type
+
     def to_dict(self):
-        return { 
+        return {
             "matchmakingId": self.__matchmaking_id,
             "ownerId": self.__owner_id,
             "name": self.__name,

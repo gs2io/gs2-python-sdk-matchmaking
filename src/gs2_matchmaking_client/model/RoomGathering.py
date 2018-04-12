@@ -14,6 +14,7 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
+
 class RoomGathering(object):
 
     def __init__(self, params=None):
@@ -32,19 +33,18 @@ class RoomGathering(object):
             self.set_create_at(params['createAt'] if 'createAt' in params.keys() else None)
             self.set_update_at(params['updateAt'] if 'updateAt' in params.keys() else None)
 
-
     def get_gathering_id(self):
         """
-        ギャザリングGRNを取得
-        :return: ギャザリングGRN
+        ギャザリングIDを取得
+        :return: ギャザリングID
         :rtype: unicode
         """
         return self.__gathering_id
 
     def set_gathering_id(self, gathering_id):
         """
-        ギャザリングGRNを設定
-        :param gathering_id: ギャザリングGRN
+        ギャザリングIDを設定
+        :param gathering_id: ギャザリングID
         :type gathering_id: unicode
         """
         self.__gathering_id = gathering_id
@@ -130,7 +130,7 @@ class RoomGathering(object):
         self.__update_at = update_at
 
     def to_dict(self):
-        return { 
+        return {
             "gatheringId": self.__gathering_id,
             "ownerUserId": self.__owner_user_id,
             "meta": self.__meta,
