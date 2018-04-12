@@ -49,7 +49,7 @@ class GetMatchmakingRequest(Gs2BasicRequest):
         :param matchmaking_name: マッチメイキングの名前を指定します。
         :type matchmaking_name: unicode
         """
-        if not isinstance(matchmaking_name, unicode):
+        if matchmaking_name and not isinstance(matchmaking_name, unicode):
             raise TypeError(type(matchmaking_name))
         self.__matchmaking_name = matchmaking_name
 

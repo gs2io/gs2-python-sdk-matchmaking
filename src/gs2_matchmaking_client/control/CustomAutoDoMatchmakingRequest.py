@@ -81,7 +81,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param matchmaking_name: マッチメイキングの名前を指定します。
         :type matchmaking_name: unicode
         """
-        if not isinstance(matchmaking_name, unicode):
+        if matchmaking_name and not isinstance(matchmaking_name, unicode):
             raise TypeError(type(matchmaking_name))
         self.__matchmaking_name = matchmaking_name
 
@@ -110,7 +110,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param attribute1: ギャザリングを新規作成する場合の属性値1
         :type attribute1: int
         """
-        if not isinstance(attribute1, int):
+        if attribute1 and not isinstance(attribute1, int):
             raise TypeError(type(attribute1))
         self.__attribute1 = attribute1
 
@@ -139,7 +139,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param attribute2: ギャザリングを新規作成する場合の属性値2
         :type attribute2: int
         """
-        if not isinstance(attribute2, int):
+        if attribute2 and not isinstance(attribute2, int):
             raise TypeError(type(attribute2))
         self.__attribute2 = attribute2
 
@@ -168,7 +168,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param attribute3: ギャザリングを新規作成する場合の属性値3
         :type attribute3: int
         """
-        if not isinstance(attribute3, int):
+        if attribute3 and not isinstance(attribute3, int):
             raise TypeError(type(attribute3))
         self.__attribute3 = attribute3
 
@@ -197,7 +197,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param attribute4: ギャザリングを新規作成する場合の属性値4
         :type attribute4: int
         """
-        if not isinstance(attribute4, int):
+        if attribute4 and not isinstance(attribute4, int):
             raise TypeError(type(attribute4))
         self.__attribute4 = attribute4
 
@@ -226,7 +226,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param attribute5: ギャザリングを新規作成する場合の属性値5
         :type attribute5: int
         """
-        if not isinstance(attribute5, int):
+        if attribute5 and not isinstance(attribute5, int):
             raise TypeError(type(attribute5))
         self.__attribute5 = attribute5
 
@@ -255,7 +255,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_attribute1_min: 既存のギャザリングに参加する対象とする属性値1の最小値
         :type search_attribute1_min: int
         """
-        if not isinstance(search_attribute1_min, int):
+        if search_attribute1_min and not isinstance(search_attribute1_min, int):
             raise TypeError(type(search_attribute1_min))
         self.__search_attribute1_min = search_attribute1_min
 
@@ -284,7 +284,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_attribute2_min: 既存のギャザリングに参加する対象とする属性値2の最小値
         :type search_attribute2_min: int
         """
-        if not isinstance(search_attribute2_min, int):
+        if search_attribute2_min and not isinstance(search_attribute2_min, int):
             raise TypeError(type(search_attribute2_min))
         self.__search_attribute2_min = search_attribute2_min
 
@@ -313,7 +313,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_attribute3_min: 既存のギャザリングに参加する対象とする属性値3の最小値
         :type search_attribute3_min: int
         """
-        if not isinstance(search_attribute3_min, int):
+        if search_attribute3_min and not isinstance(search_attribute3_min, int):
             raise TypeError(type(search_attribute3_min))
         self.__search_attribute3_min = search_attribute3_min
 
@@ -342,7 +342,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_attribute4_min: 既存のギャザリングに参加する対象とする属性値4の最小値
         :type search_attribute4_min: int
         """
-        if not isinstance(search_attribute4_min, int):
+        if search_attribute4_min and not isinstance(search_attribute4_min, int):
             raise TypeError(type(search_attribute4_min))
         self.__search_attribute4_min = search_attribute4_min
 
@@ -371,7 +371,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_attribute5_min: 既存のギャザリングに参加する対象とする属性値5の最小値
         :type search_attribute5_min: int
         """
-        if not isinstance(search_attribute5_min, int):
+        if search_attribute5_min and not isinstance(search_attribute5_min, int):
             raise TypeError(type(search_attribute5_min))
         self.__search_attribute5_min = search_attribute5_min
 
@@ -400,7 +400,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_attribute1_max: 既存のギャザリングに参加する対象とする属性値1の最大値
         :type search_attribute1_max: int
         """
-        if not isinstance(search_attribute1_max, int):
+        if search_attribute1_max and not isinstance(search_attribute1_max, int):
             raise TypeError(type(search_attribute1_max))
         self.__search_attribute1_max = search_attribute1_max
 
@@ -429,7 +429,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_attribute2_max: 既存のギャザリングに参加する対象とする属性値2の最大値
         :type search_attribute2_max: int
         """
-        if not isinstance(search_attribute2_max, int):
+        if search_attribute2_max and not isinstance(search_attribute2_max, int):
             raise TypeError(type(search_attribute2_max))
         self.__search_attribute2_max = search_attribute2_max
 
@@ -458,7 +458,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_attribute3_max: 既存のギャザリングに参加する対象とする属性値3の最大値
         :type search_attribute3_max: int
         """
-        if not isinstance(search_attribute3_max, int):
+        if search_attribute3_max and not isinstance(search_attribute3_max, int):
             raise TypeError(type(search_attribute3_max))
         self.__search_attribute3_max = search_attribute3_max
 
@@ -487,7 +487,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_attribute4_max: 既存のギャザリングに参加する対象とする属性値4の最大値
         :type search_attribute4_max: int
         """
-        if not isinstance(search_attribute4_max, int):
+        if search_attribute4_max and not isinstance(search_attribute4_max, int):
             raise TypeError(type(search_attribute4_max))
         self.__search_attribute4_max = search_attribute4_max
 
@@ -516,7 +516,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_attribute5_max: 既存のギャザリングに参加する対象とする属性値5の最大値
         :type search_attribute5_max: int
         """
-        if not isinstance(search_attribute5_max, int):
+        if search_attribute5_max and not isinstance(search_attribute5_max, int):
             raise TypeError(type(search_attribute5_max))
         self.__search_attribute5_max = search_attribute5_max
 
@@ -545,7 +545,7 @@ class CustomAutoDoMatchmakingRequest(Gs2UserRequest):
         :param search_context: 中断された検索を再開するためのコンテキスト
         :type search_context: unicode
         """
-        if not isinstance(search_context, unicode):
+        if search_context and not isinstance(search_context, unicode):
             raise TypeError(type(search_context))
         self.__search_context = search_context
 
