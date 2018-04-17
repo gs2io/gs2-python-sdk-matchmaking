@@ -51,7 +51,7 @@ class CustomAutoDescribeJoinedUserRequest(Gs2UserRequest):
         :param matchmaking_name: マッチメイキングの名前を指定します。
         :type matchmaking_name: unicode
         """
-        if matchmaking_name and not isinstance(matchmaking_name, unicode):
+        if _matchmaking_name and not (isinstance(_matchmaking_name, str) or isinstance(_matchmaking_name, unicode)):
             raise TypeError(type(matchmaking_name))
         self.__matchmaking_name = matchmaking_name
 
@@ -80,7 +80,7 @@ class CustomAutoDescribeJoinedUserRequest(Gs2UserRequest):
         :param gathering_id: ギャザリングのIDを指定します。
         :type gathering_id: unicode
         """
-        if gathering_id and not isinstance(gathering_id, unicode):
+        if _gathering_id and not (isinstance(_gathering_id, str) or isinstance(_gathering_id, unicode)):
             raise TypeError(type(gathering_id))
         self.__gathering_id = gathering_id
 

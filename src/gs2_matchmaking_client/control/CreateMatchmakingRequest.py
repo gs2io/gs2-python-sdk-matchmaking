@@ -109,7 +109,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param name: マッチメイキングの名前
         :type name: unicode
         """
-        if name and not isinstance(name, unicode):
+        if name and not (isinstance(name, str) or isinstance(name, unicode)):
             raise TypeError(type(name))
         self.__name = name
 
@@ -138,7 +138,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param description: マッチメイキングの説明
         :type description: unicode
         """
-        if description and not isinstance(description, unicode):
+        if description and not (isinstance(description, str) or isinstance(description, unicode)):
             raise TypeError(type(description))
         self.__description = description
 
@@ -167,7 +167,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param service_class: マッチメイキングのサービスクラス
         :type service_class: unicode
         """
-        if service_class and not isinstance(service_class, unicode):
+        if service_class and not (isinstance(service_class, str) or isinstance(service_class, unicode)):
             raise TypeError(type(service_class))
         self.__service_class = service_class
 
@@ -225,7 +225,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param gathering_pool_name: GS2-Realtime のギャザリングプール名
         :type gathering_pool_name: unicode
         """
-        if gathering_pool_name and not isinstance(gathering_pool_name, unicode):
+        if gathering_pool_name and not (isinstance(gathering_pool_name, str) or isinstance(gathering_pool_name, unicode)):
             raise TypeError(type(gathering_pool_name))
         self.__gathering_pool_name = gathering_pool_name
 
@@ -254,7 +254,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param callback: マッチメイキング完了コールバックURL
         :type callback: unicode
         """
-        if callback and not isinstance(callback, unicode):
+        if callback and not (isinstance(callback, str) or isinstance(callback, unicode)):
             raise TypeError(type(callback))
         self.__callback = callback
 
@@ -283,7 +283,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param notification_game_name: GS2-InGamePushNotification のゲーム名
         :type notification_game_name: unicode
         """
-        if notification_game_name and not isinstance(notification_game_name, unicode):
+        if notification_game_name and not (isinstance(notification_game_name, str) or isinstance(notification_game_name, unicode)):
             raise TypeError(type(notification_game_name))
         self.__notification_game_name = notification_game_name
 
@@ -312,7 +312,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param create_gathering_trigger_script: ギャザリング作成時 に実行されるGS2-Script
         :type create_gathering_trigger_script: unicode
         """
-        if create_gathering_trigger_script and not isinstance(create_gathering_trigger_script, unicode):
+        if create_gathering_trigger_script and not (isinstance(create_gathering_trigger_script, str) or isinstance(create_gathering_trigger_script, unicode)):
             raise TypeError(type(create_gathering_trigger_script))
         self.__create_gathering_trigger_script = create_gathering_trigger_script
 
@@ -341,7 +341,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param create_gathering_done_trigger_script: ギャザリング作成完了時 に実行されるGS2-Script
         :type create_gathering_done_trigger_script: unicode
         """
-        if create_gathering_done_trigger_script and not isinstance(create_gathering_done_trigger_script, unicode):
+        if create_gathering_done_trigger_script and not (isinstance(create_gathering_done_trigger_script, str) or isinstance(create_gathering_done_trigger_script, unicode)):
             raise TypeError(type(create_gathering_done_trigger_script))
         self.__create_gathering_done_trigger_script = create_gathering_done_trigger_script
 
@@ -370,7 +370,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param join_gathering_trigger_script: ギャザリング参加時 に実行されるGS2-Script
         :type join_gathering_trigger_script: unicode
         """
-        if join_gathering_trigger_script and not isinstance(join_gathering_trigger_script, unicode):
+        if join_gathering_trigger_script and not (isinstance(join_gathering_trigger_script, str) or isinstance(join_gathering_trigger_script, unicode)):
             raise TypeError(type(join_gathering_trigger_script))
         self.__join_gathering_trigger_script = join_gathering_trigger_script
 
@@ -399,7 +399,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param join_gathering_done_trigger_script: ギャザリング参加完了時 に実行されるGS2-Script
         :type join_gathering_done_trigger_script: unicode
         """
-        if join_gathering_done_trigger_script and not isinstance(join_gathering_done_trigger_script, unicode):
+        if join_gathering_done_trigger_script and not (isinstance(join_gathering_done_trigger_script, str) or isinstance(join_gathering_done_trigger_script, unicode)):
             raise TypeError(type(join_gathering_done_trigger_script))
         self.__join_gathering_done_trigger_script = join_gathering_done_trigger_script
 
@@ -428,7 +428,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param leave_gathering_trigger_script: ギャザリング離脱時 に実行されるGS2-Script
         :type leave_gathering_trigger_script: unicode
         """
-        if leave_gathering_trigger_script and not isinstance(leave_gathering_trigger_script, unicode):
+        if leave_gathering_trigger_script and not (isinstance(leave_gathering_trigger_script, str) or isinstance(leave_gathering_trigger_script, unicode)):
             raise TypeError(type(leave_gathering_trigger_script))
         self.__leave_gathering_trigger_script = leave_gathering_trigger_script
 
@@ -457,7 +457,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param leave_gathering_done_trigger_script: ギャザリング離脱完了時 に実行されるGS2-Script
         :type leave_gathering_done_trigger_script: unicode
         """
-        if leave_gathering_done_trigger_script and not isinstance(leave_gathering_done_trigger_script, unicode):
+        if leave_gathering_done_trigger_script and not (isinstance(leave_gathering_done_trigger_script, str) or isinstance(leave_gathering_done_trigger_script, unicode)):
             raise TypeError(type(leave_gathering_done_trigger_script))
         self.__leave_gathering_done_trigger_script = leave_gathering_done_trigger_script
 
@@ -486,7 +486,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param breakup_gathering_trigger_script: ギャザリング解散時 に実行されるGS2-Script
         :type breakup_gathering_trigger_script: unicode
         """
-        if breakup_gathering_trigger_script and not isinstance(breakup_gathering_trigger_script, unicode):
+        if breakup_gathering_trigger_script and not (isinstance(breakup_gathering_trigger_script, str) or isinstance(breakup_gathering_trigger_script, unicode)):
             raise TypeError(type(breakup_gathering_trigger_script))
         self.__breakup_gathering_trigger_script = breakup_gathering_trigger_script
 
@@ -515,7 +515,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param matchmaking_complete_trigger_script: マッチメイキング成立時 に実行されるGS2-Script
         :type matchmaking_complete_trigger_script: unicode
         """
-        if matchmaking_complete_trigger_script and not isinstance(matchmaking_complete_trigger_script, unicode):
+        if matchmaking_complete_trigger_script and not (isinstance(matchmaking_complete_trigger_script, str) or isinstance(matchmaking_complete_trigger_script, unicode)):
             raise TypeError(type(matchmaking_complete_trigger_script))
         self.__matchmaking_complete_trigger_script = matchmaking_complete_trigger_script
 
@@ -544,7 +544,7 @@ class CreateMatchmakingRequest(Gs2BasicRequest):
         :param _type: マッチメイキングの種類
         :type _type: unicode
         """
-        if _type and not isinstance(_type, unicode):
+        if _type and not (isinstance(_type, str) or isinstance(_type, unicode)):
             raise TypeError(type(_type))
         self.__type = _type
 
