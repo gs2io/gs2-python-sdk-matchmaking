@@ -51,7 +51,7 @@ class PasscodeJoinGatheringRequest(Gs2UserRequest):
         :param matchmaking_name: マッチメイキングの名前を指定します。
         :type matchmaking_name: unicode
         """
-        if _matchmaking_name and not (isinstance(_matchmaking_name, str) or isinstance(_matchmaking_name, unicode)):
+        if matchmaking_name and not (isinstance(matchmaking_name, str) or isinstance(matchmaking_name, unicode)):
             raise TypeError(type(matchmaking_name))
         self.__matchmaking_name = matchmaking_name
 
@@ -80,7 +80,7 @@ class PasscodeJoinGatheringRequest(Gs2UserRequest):
         :param passcode: ギャザリングのパスコードを指定します。
         :type passcode: unicode
         """
-        if _passcode and not (isinstance(_passcode, str) or isinstance(_passcode, unicode)):
+        if passcode and not (isinstance(passcode, str) or isinstance(passcode, unicode)):
             raise TypeError(type(passcode))
         self.__passcode = passcode
 
