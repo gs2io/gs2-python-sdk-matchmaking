@@ -32,7 +32,6 @@ class AnybodyDescribeJoinedUserResult(object):
                 response['items']
             )
         )
-
     def get_items(self):
         """
         ギャザリングに参加しているユーザIDリストを取得
@@ -40,6 +39,12 @@ class AnybodyDescribeJoinedUserResult(object):
         :rtype: list[unicode]
         """
         return self.__items
+
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(AnybodyDescribeJoinedUserResult, self).__getitem__(key)
 
     def to_dict(self):
         """

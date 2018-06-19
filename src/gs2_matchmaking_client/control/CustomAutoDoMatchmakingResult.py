@@ -28,7 +28,6 @@ class CustomAutoDoMatchmakingResult(object):
         self.__done = bool(response['done']) if 'done' in response.keys() and response['done'] is not None else None
         self.__item = CustomAutoGathering(response['item']) if 'item' in response.keys() and response['item'] is not None else None
         self.__search_context = unicode(response['searchContext']) if 'searchContext' in response.keys() and response['searchContext'] is not None else None
-
     def get_done(self):
         """
         マッチメイキングが完了したかを取得
@@ -36,7 +35,6 @@ class CustomAutoDoMatchmakingResult(object):
         :rtype: bool
         """
         return self.__done
-
     def get_item(self):
         """
         CustomAutoマッチメイキング ギャザリングを取得
@@ -44,7 +42,6 @@ class CustomAutoDoMatchmakingResult(object):
         :rtype: CustomAutoGathering
         """
         return self.__item
-
     def get_search_context(self):
         """
         検索を再開するためのコンテキストを取得
@@ -52,6 +49,12 @@ class CustomAutoDoMatchmakingResult(object):
         :rtype: unicode
         """
         return self.__search_context
+
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(CustomAutoDoMatchmakingResult, self).__getitem__(key)
 
     def to_dict(self):
         """

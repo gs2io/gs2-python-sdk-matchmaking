@@ -26,7 +26,6 @@ class PasscodeCreateGatheringResult(object):
         :type response: dict
         """
         self.__item = PasscodeGathering(response['item']) if 'item' in response.keys() and response['item'] is not None else None
-
     def get_item(self):
         """
         Passcodeマッチメイキング ギャザリングを取得
@@ -34,6 +33,12 @@ class PasscodeCreateGatheringResult(object):
         :rtype: PasscodeGathering
         """
         return self.__item
+
+    def __getitem__(self, key):
+        items = self.to_dict()
+        if key in items.keys():
+            return items[key]
+        return super(PasscodeCreateGatheringResult, self).__getitem__(key)
 
     def to_dict(self):
         """
