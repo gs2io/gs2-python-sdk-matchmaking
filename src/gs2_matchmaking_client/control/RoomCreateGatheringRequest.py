@@ -51,7 +51,7 @@ class RoomCreateGatheringRequest(Gs2UserRequest):
         :param matchmaking_name: マッチメイキングの名前を指定します。
         :type matchmaking_name: unicode
         """
-        if matchmaking_name and not (isinstance(matchmaking_name, str) or isinstance(matchmaking_name, unicode)):
+        if matchmaking_name is not None and not (isinstance(matchmaking_name, str) or isinstance(matchmaking_name, unicode)):
             raise TypeError(type(matchmaking_name))
         self.__matchmaking_name = matchmaking_name
 
@@ -80,7 +80,7 @@ class RoomCreateGatheringRequest(Gs2UserRequest):
         :param meta: ギャザリングのメタ情報
         :type meta: unicode
         """
-        if meta and not (isinstance(meta, str) or isinstance(meta, unicode)):
+        if meta is not None and not (isinstance(meta, str) or isinstance(meta, unicode)):
             raise TypeError(type(meta))
         self.__meta = meta
 

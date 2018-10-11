@@ -53,7 +53,7 @@ class RoomDescribeGatheringRequest(Gs2UserRequest):
         :param matchmaking_name: マッチメイキングの名前を指定します。
         :type matchmaking_name: unicode
         """
-        if matchmaking_name and not (isinstance(matchmaking_name, str) or isinstance(matchmaking_name, unicode)):
+        if matchmaking_name is not None and not (isinstance(matchmaking_name, str) or isinstance(matchmaking_name, unicode)):
             raise TypeError(type(matchmaking_name))
         self.__matchmaking_name = matchmaking_name
 
@@ -82,7 +82,7 @@ class RoomDescribeGatheringRequest(Gs2UserRequest):
         :param page_token: データの取得を開始する位置を指定するトークン
         :type page_token: unicode
         """
-        if page_token and not (isinstance(page_token, str) or isinstance(page_token, unicode)):
+        if page_token is not None and not (isinstance(page_token, str) or isinstance(page_token, unicode)):
             raise TypeError(type(page_token))
         self.__page_token = page_token
 
@@ -111,7 +111,7 @@ class RoomDescribeGatheringRequest(Gs2UserRequest):
         :param limit: データの取得件数
         :type limit: int
         """
-        if limit and not isinstance(limit, int):
+        if limit is not None and not isinstance(limit, int):
             raise TypeError(type(limit))
         self.__limit = limit
 
