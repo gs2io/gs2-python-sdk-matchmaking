@@ -373,13 +373,13 @@ class Matchmaking(object):
         """
         return self.__type
 
-    def set_type(self, _type):
+    def set_type(self, type_):
         """
         マッチメイキング方式を設定
-        :param _type: マッチメイキング方式
-        :type _type: unicode
+        :param type_: マッチメイキング方式
+        :type type_: unicode
         """
-        self.__type = _type
+        self.__type = type_
 
     def __getitem__(self, key):
         items = self.to_dict()
